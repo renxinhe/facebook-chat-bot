@@ -1,7 +1,7 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.2.5",
-  "description": "A sample Node.js app using Express 4",
+  "name": "jimbot",
+  "version": "0.1.0",
+  "description": "A Facebook messenger ultility bot",
   "engines": {
     "node": "5.9.1"
   },
@@ -11,16 +11,21 @@
   },
   "dependencies": {
     "ejs": "2.4.1",
-    "express": "4.13.3"
+    "express": "4.13.3",
+    "facebook-chat-api": "1.1.0",
+    "read": "1.0.7",
+    "bcrypt": "0.8.7    "
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "http://github.com/renxinhe/facebook-chat-bot"
   },
   "keywords": [
     "node",
     "heroku",
-    "express"
+    "express",
+    "facebook-chat-api",
+    "facebook-bot"
   ],
   "license": "MIT"
 }
