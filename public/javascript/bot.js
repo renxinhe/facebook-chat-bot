@@ -18,25 +18,48 @@ var schema = {
 	}
 };
 
-var email;
+var userAPI, email;
 prompt.start();
 prompt.get(schema, function(err, result){
 	if(err) {
 		return console.error(err);
 	}
 	email = result.email;
-	login({email: result.email, password: result.password}, loginCallback);
+	login({email: result.email, password: result.password}, function(err, api) {
+		if(err) {
+			return console.error(err);
+		}
+		userAPI = api;
+		console.log("\"" + email + "\" logged in!");
+		// Bot listener
+		userAPI.listen(listenerCallback);
+	});
 });
 
-
-// Bot logic
-var api;
-function loginCallback(err, callbackAPI) {
-	if(err) {
-		return console.error(err);
+function listenerCallback(err, event) {
+	switch (event.type) {
+		case "message":
+		messageHandler(event);
+		break;
+		// TODO: add more event types
+		default:
+		break;
 	}
-	api = callbackAPI;
-	console.log("\"" + email + "\" logged in!");
+}
+
+// Bot handlers
+function messageHandler(event) {
+	var message = event.body;
+	if (message.includes("@meme")) {
+		rickroll(userAPI, event.threadID);
+	}
+}
+// TODO: add more handlers
+
+// Misc functions
+function rickroll(api, threadID) {
+	api.sendMessage("https://www.youtube.com/watch?v=dQw4w9WgXcQ", threadID);
+	console.log("Rickrolled " + threadID);
 }
 
 // Exit -- logout user
@@ -45,11 +68,13 @@ function exitHandler(options, err) {
 		return console.error(err.stack);
 	}
     if (options.cleanup || options.exit) {
-    	if (email != undefined && api != undefined) {
+    	if (email != undefined && userAPI != undefined) {
 	    	console.log("Logging out \"" + email + "\"...");
-	    	api.logout(function(err) {
-	    		return console.error(err);
+	    	userAPI.logout(function(err) {
+	    		console.error(err);
 	    	});
+	    	email = undefined;
+	    	userAPI = undefined;
     	} else {
     		console.log("No active session. Closing...")
     	}
