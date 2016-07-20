@@ -7,8 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "bot": "node ./public/javascript/bot.js"
+    "start": "node ./public/javascript/bot.js"
   },
   "dependencies": {
     "ejs": "2.4.1",
