@@ -21,12 +21,12 @@ var schema = {
 var userAPI, email;
 prompt.start();
 prompt.get(schema, function(err, result){
-	if(err) {
+	if (err) {
 		return console.error(err);
 	}
 	email = result.email;
 	login({email: result.email, password: result.password}, function(err, api) {
-		if(err) {
+		if (err) {
 			return console.error(err);
 		}
 		userAPI = api;
@@ -52,14 +52,28 @@ function messageHandler(event) {
 	var message = event.body;
 	if (message.includes("@meme")) {
 		rickroll(userAPI, event.threadID);
+	} else if (message.match(/^@color \#[0-9A-Fa-f]{6}$/)) {
+		setChatColor(userAPI, event.threadID, message)
 	}
+	// TODO: add more handlers
 }
-// TODO: add more handlers
 
 // Misc functions
 function rickroll(api, threadID) {
 	api.sendMessage("https://www.youtube.com/watch?v=dQw4w9WgXcQ", threadID);
 	console.log("Rickrolled " + threadID);
+}
+
+function setChatColor(api, threadID, body) {
+	var colorHex = body.substring(7).toUpperCase();
+	api.changeThreadColor(colorHex, threadID, function(err){
+		if (err) {
+			api.sendMessage(err, threadID);
+		}
+	});
+
+	api.sendMessage("Color changed to " + colorHex, threadID);
+	console.log("Color changed to " + colorHex + " for " + threadID);
 }
 
 // Exit -- logout user
