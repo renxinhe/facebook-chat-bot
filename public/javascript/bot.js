@@ -25,15 +25,18 @@ prompt.get(schema, function(err, result){
 		return console.error(err);
 	}
 	email = result.email;
-	login({email: result.email, password: result.password}, function(err, api) {
-		if (err) {
-			return console.error(err);
+	login({email: result.email, password: result.password}, 
+		{selfListen: true}, 
+		function(err, api) {
+			if (err) {
+				return console.error(err);
+			}
+			userAPI = api;
+			console.log("\"" + email + "\" logged in!");
+			// Bot listener
+			userAPI.listen(listenerCallback);
 		}
-		userAPI = api;
-		console.log("\"" + email + "\" logged in!");
-		// Bot listener
-		userAPI.listen(listenerCallback);
-	});
+	);
 });
 
 function listenerCallback(err, event) {
