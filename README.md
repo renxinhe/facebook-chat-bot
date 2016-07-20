@@ -1,6 +1,6 @@
 # Jimbot
 A messenger ultility bot.
 
-To run the bot (for now):
+To run the bot:
 
-`node ./public/javascript/bot.js`
+`npm bot`
