@@ -1,5 +1,6 @@
 var prompt = require("prompt");
 var login = require("facebook-chat-api");
+var weather = require("weather-js");
 
 // Reading user login info
 var EMAIL_PATTERN = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
@@ -53,12 +54,19 @@ function listenerCallback(err, event) {
 // Bot handlers
 function messageHandler(event) {
 	var message = event.body;
-	if (message.includes("@meme")) {
-		rickroll(userAPI, event.threadID);
-	} else if (message.match(/^@color \#[0-9A-Fa-f]{6}$/)) {
-		setChatColor(userAPI, event.threadID, message)
+	if (message != null) {
+		// rickroll
+		if (message.includes("@meme")) {
+			rickroll(userAPI, event.threadID);
+		// setChatColor
+		} else if (message.match(/^@color \#[0-9A-Fa-f]{6}$/)) {
+			setChatColor(userAPI, event.threadID, message);
+		// getWeather
+		} else if ((/^@weather ([0-9]{5}|[a-zA-z ]+)$/).test(message)) {
+			getWeather(userAPI, event.threadID, message);
+		}
+		// TODO: add more handlers
 	}
-	// TODO: add more handlers
 }
 
 // Misc functions
@@ -77,6 +85,36 @@ function setChatColor(api, threadID, body) {
 
 	api.sendMessage("Color changed to " + colorHex, threadID);
 	console.log("Color changed to " + colorHex + " for " + threadID);
+}
+
+function getWeather(api, threadID, body) {
+	var locale = body.substring(body.indexOf('@weather') + 9);
+	weather.find({ search: locale, degreeType: 'F' }, function(err, result) {
+		if (err) {
+			api.sendMessage(err, threadID);
+			console.log(err);
+		} else if (result) {
+			// Display typing indicator during async fetch and processing
+			var end = api.sendTypingIndicator(threadID, function(err) {
+				if (err) {
+					console.log(err);
+				} else {
+					var data = result[0];
+					var message = 'It is currently ' + data.current.temperature + '\xB0F and ' + data.current.skytext +
+						' in ' + data.location.name + '.\n' +
+						'It feels like ' + data.current.feelslike + '\xB0F outside. Relative humidity is ' + data.current.humidity + '%.\n' +
+						'Here\'s your 5-day forecast:';
+
+					// Concatenate forecast to message
+					data.forecast.forEach(function(day) {
+						message += ('\n' + day.date + ' | Low: ' + day.low + ', High: ' + day.high + '. Precipitation: ' + day.precip + '%');
+					});
+					api.sendMessage(message, threadID);
+				}
+			});
+			end();
+		}
+	})
 }
 
 // Exit -- logout user
