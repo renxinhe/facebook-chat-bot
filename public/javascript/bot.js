@@ -113,6 +113,9 @@ function getWeather(api, threadID, body) {
 				}
 			});
 			end();
+		} else {
+			api.sendMessage('No data received.', threadID);
+			console.log('No data');
 		}
 	})
 }
