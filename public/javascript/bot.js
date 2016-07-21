@@ -1,6 +1,7 @@
 var prompt = require("prompt");
 var login = require("facebook-chat-api");
 var weather = require("weather-js");
+var yahooFinance = require("yahoo-finance");
 
 // Reading user login info
 var EMAIL_PATTERN = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
@@ -64,6 +65,10 @@ function messageHandler(event) {
 		// getWeather
 		} else if ((/^@weather ([0-9]{5}|[a-zA-z ]+,?[a-zA-z ]+)$/).test(message)) {
 			getWeather(userAPI, event.threadID, message);
+		// getTicker
+		// TODO: more comprehensive regex for foreign ticker symbols
+		} else if ((/^@ticker [a-zA-Z]{1,5}$/).test(message)) {
+			getTicker(userAPI, event.threadID, message);
 		}
 		// TODO: add more handlers
 	}
@@ -118,6 +123,24 @@ function getWeather(api, threadID, body) {
 			console.log('No data');
 		}
 	})
+}
+
+function getTicker(api, threadID, body) {
+	var ticker = body.substring(8);
+	yahooFinance.snapshot({
+		symbol: ticker,
+		fields: ['s', 'n', 'd1', 'l1']
+	}, function(err, snapshot) {
+		if (err) {
+			console.log(err);
+		} else if (snapshot) {
+			var message = snapshot.name + ' (' + snapshot.symbol + ') last traded at $' + snapshot.lastTradePriceOnly + ' on ' + snapshot.lastTradeDate + '.';
+			api.sendMessage(message, threadID);
+		} else {
+			api.sendMessage('No data received.', threadID);
+			console.log('No data');
+		}
+	});
 }
 
 // Exit -- logout user
