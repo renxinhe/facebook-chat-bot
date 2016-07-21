@@ -62,7 +62,7 @@ function messageHandler(event) {
 		} else if ((/^@color \#[0-9A-Fa-f]{6}$/).test(message)) {
 			setChatColor(userAPI, event.threadID, message);
 		// getWeather
-		} else if ((/^@weather ([0-9]{5}|[a-zA-z ]+,?[a-zA-z ]+)$/).test(message)) {
+		} else if ((/^@weather ([0-9]{5}|([a-zA-z ]+(, )?[a-zA-z ]+))$/).test(message)) {
 			getWeather(userAPI, event.threadID, message);
 		}
 		// TODO: add more handlers
@@ -76,7 +76,7 @@ function rickroll(api, threadID) {
 }
 
 function setChatColor(api, threadID, body) {
-	var colorHex = body.substring(7).toUpperCase();
+	var colorHex = body.substring('@color '.length).toUpperCase();
 	api.changeThreadColor(colorHex, threadID, function(err){
 		if (err) {
 			api.sendMessage(err, threadID);
@@ -88,11 +88,12 @@ function setChatColor(api, threadID, body) {
 }
 
 function getWeather(api, threadID, body) {
-	var locale = body.substring(body.indexOf('@weather') + 9);
+	var locale = body.substring('@weather '.length);
+	console.log('Fetching weather for ' + locale + '...');
 	weather.find({ search: locale, degreeType: 'F' }, function(err, result) {
 		if (err) {
 			api.sendMessage(err, threadID);
-			console.log(err);
+			console.error(err);
 		} else if (result) {
 			// Display typing indicator during async fetch and processing
 			var end = api.sendTypingIndicator(threadID, function(err) {
@@ -110,14 +111,17 @@ function getWeather(api, threadID, body) {
 						message += ('\n' + day.date + ' | Low: ' + day.low + ', High: ' + day.high + '. Precipitation: ' + day.precip + '%');
 					});
 					api.sendMessage(message, threadID);
+					console.log('Weather info sent to ' + threadID);
 				}
 			});
-			end();
+			if (end != undefined) {
+				end();
+			}
 		} else {
 			api.sendMessage('No data received.', threadID);
 			console.log('No data');
 		}
-	})
+	});
 }
 
 // Exit -- logout user
@@ -134,9 +138,12 @@ function exitHandler(options, err) {
 	    	email = undefined;
 	    	userAPI = undefined;
     	} else {
-    		console.log("No active session. Closing...")
+    		return console.log("No active session. Closing...")
     	}
+    } else if (options.exception) {
+    		return console.error(err.stack);
     }
+    return;
 }
 
 //do something when app is closing
@@ -146,4 +153,4 @@ process.on('exit', exitHandler.bind(null,{cleanup:true}));
 process.on('SIGINT', exitHandler.bind(null, {exit:true}));
 
 //catches uncaught exceptions
-process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
+process.on('uncaughtException', exitHandler.bind(null, {exception:true}));
