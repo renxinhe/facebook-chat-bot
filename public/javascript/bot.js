@@ -62,7 +62,7 @@ function messageHandler(event) {
 		} else if ((/^@color \#[0-9A-Fa-f]{6}$/).test(message)) {
 			setChatColor(userAPI, event.threadID, message);
 		// getWeather
-		} else if ((/^@weather ([0-9]{5}|([a-zA-z ]+(, )?[a-zA-z ]+))$/).test(message)) {
+		} else if ((/^@weather ([0-9]{5}|([a-zA-Z ]+(, )?[a-zA-Z ]+))$/).test(message)) {
 			getWeather(userAPI, event.threadID, message);
 		}
 		// TODO: add more handlers
