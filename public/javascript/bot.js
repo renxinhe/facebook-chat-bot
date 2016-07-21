@@ -56,7 +56,7 @@ function messageHandler(event) {
 	var message = event.body;
 	if (message != null) {
 		// rickroll
-		if (message.includes("@meme")) {
+		if ((/^@meme$/).test(message)) {
 			rickroll(userAPI, event.threadID);
 		// setChatColor
 		} else if ((/^@color \#[0-9A-Fa-f]{6}$/).test(message)) {
