@@ -153,19 +153,25 @@ function getWeather(api, threadID, body) {
 }
 
 function getTicker(api, threadID, body) {
-	var ticker = body.substring(8);
+	var ticker = body.substring(8).toUpperCase();
 	yahooFinance.snapshot({
 		symbol: ticker,
-		fields: ['s', 'n', 'd1', 'l1']
+		fields: ['s', 'n', 'l1', 'd1', 'v', 's1', 'r', 'c1', 'p2']
 	}, function(err, snapshot) {
 		if (err) {
 			console.log(err);
-		} else if (snapshot) {
-			var message = snapshot.name + ' (' + snapshot.symbol + ') last traded at $' + snapshot.lastTradePriceOnly + ' on ' + snapshot.lastTradeDate + '.';
+		} else if (snapshot.name != null) {
+			console.log(snapshot);
+			var message = snapshot.name + ' (' + snapshot.symbol + ') last traded at $' + 
+				snapshot.lastTradePriceOnly.toFixed(2) + ' on ' + snapshot.lastTradeDate + '.\n' +
+				'Volume: ' + snapshot.volume + ' | P/E Ratio: ' + snapshot.peRatio + '\n' +
+				'Change: ' + snapshot.change.toFixed(2) + ' | % Change: ' + (snapshot.changeInPercent * 100) + '%';
+
 			api.sendMessage(message, threadID);
 		} else {
-			api.sendMessage('No data received.', threadID);
-			console.log('No data');
+			// If no company name returned
+			api.sendMessage('Ticker ' + ticker + ' not found.' , threadID);
+			console.log('No ticker data found');
 		}
 	});
 }
