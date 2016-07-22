@@ -1,6 +1,13 @@
+var express = require('express');
+var app = express();
 var prompt = require("prompt");
 var login = require("facebook-chat-api");
 var weather = require("weather-js");
+
+app.set('port', (process.env.PORT || 5000));
+app.get('/', function(req, res) {
+ 	res.send('GET request to homepage');
+});
 
 // Reading user login info
 if (process.env.USE_CLI === 'true') {
