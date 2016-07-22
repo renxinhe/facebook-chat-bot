@@ -1,13 +1,5 @@
-var express = require('express');
-var app = express();
 var prompt = require("prompt");
 var login = require("facebook-chat-api");
-var weather = require("weather-js");
-
-app.set('port', (process.env.PORT || 5000));
-app.get('/', function(req, res) {
- 	res.send('GET request to homepage');
-});
 
 // Reading user login info
 if (process.env.USE_CLI === 'true') {
@@ -79,76 +71,34 @@ function listenerCallback(err, event) {
 }
 
 // Bot handlers
+var handlerFunctions = {};
+var handlerFunctionNames = [
+	'getWeather',
+	'rickroll',
+	'setThreadColor',
+	// TODO: add more handlers
+];
+
+for (var i = 0; i < handlerFunctionNames.length; i++) {
+	// Load external functions
+	handlerFunctions[handlerFunctionNames[i]] = require('./' + handlerFunctionNames[i]);
+}
+
 function messageHandler(event) {
 	var message = event.body;
 	if (message != null) {
 		// rickroll
 		if ((/^@meme$/).test(message)) {
-			rickroll(userAPI, event.threadID);
-		// setChatColor
+			handlerFunctions['rickroll'](userAPI, event.threadID);
+		// setThreadColor
 		} else if ((/^@color \#[0-9A-Fa-f]{6}$/).test(message)) {
-			setChatColor(userAPI, event.threadID, message);
+			handlerFunctions['setThreadColor'](userAPI, event.threadID, message);
 		// getWeather
 		} else if ((/^@weather ([0-9]{5}|([a-zA-Z ]+(, )?[a-zA-Z ]+))$/).test(message)) {
-			getWeather(userAPI, event.threadID, message);
+			handlerFunctions['getWeather'](userAPI, event.threadID, message);
 		}
 		// TODO: add more handlers
 	}
-}
-
-// Misc functions
-function rickroll(api, threadID) {
-	api.sendMessage("https://www.youtube.com/watch?v=dQw4w9WgXcQ", threadID);
-	console.log("Rickrolled " + threadID);
-}
-
-function setChatColor(api, threadID, body) {
-	var colorHex = body.substring('@color '.length).toUpperCase();
-	api.changeThreadColor(colorHex, threadID, function(err){
-		if (err) {
-			api.sendMessage(err, threadID);
-		}
-	});
-
-	api.sendMessage("Color changed to " + colorHex, threadID);
-	console.log("Color changed to " + colorHex + " for " + threadID);
-}
-
-function getWeather(api, threadID, body) {
-	var locale = body.substring('@weather '.length);
-	console.log('Fetching weather for ' + locale + '...');
-	weather.find({ search: locale, degreeType: 'F' }, function(err, result) {
-		if (err) {
-			api.sendMessage(err, threadID);
-			console.error(err);
-		} else if (result) {
-			// Display typing indicator during async fetch and processing
-			var end = api.sendTypingIndicator(threadID, function(err) {
-				if (err) {
-					console.log(err);
-				} else {
-					var data = result[0];
-					var message = 'It is currently ' + data.current.temperature + '\xB0F and ' + data.current.skytext +
-						' in ' + data.location.name + '.\n' +
-						'It feels like ' + data.current.feelslike + '\xB0F outside. Relative humidity is ' + data.current.humidity + '%.\n' +
-						'Here\'s your 5-day forecast:';
-
-					// Concatenate forecast to message
-					data.forecast.forEach(function(day) {
-						message += ('\n' + day.date + ' | Low: ' + day.low + ', High: ' + day.high + '. Precipitation: ' + day.precip + '%');
-					});
-					api.sendMessage(message, threadID);
-					console.log('Weather info sent to ' + threadID);
-				}
-			});
-			if (end != undefined) {
-				end();
-			}
-		} else {
-			api.sendMessage('No data received.', threadID);
-			console.log('No data');
-		}
-	});
 }
 
 // Exit -- logout user
@@ -157,13 +107,13 @@ function exitHandler(options, err) {
 	console.log('Stopped listening.');
 
 	if (err) {
-		return console.error(err.stack);
+		return console.error(err);
 	}
     if (options.cleanup || options.exit) {
     	if (email != undefined && userAPI != undefined) {
 	    	console.log("Logging out \"" + email + "\"...");
 	    	userAPI.logout(function(err) {
-	    		console.error(err.stack);
+	    		console.error(err);
 	    	});
 	    	email = undefined;
 	    	userAPI = undefined;
@@ -171,7 +121,7 @@ function exitHandler(options, err) {
     		return console.log("No active session. Closing...")
     	}
     } else if (options.exception) {
-    		return console.error(err.stack);
+    		return console.error(err);
     }
     return;
 }
