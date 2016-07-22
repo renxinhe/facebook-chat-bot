@@ -1,6 +1,8 @@
 # Jimbot
-**A Facebook messenger utility bot.**\
+**A Facebook messenger utility bot.**
+
 Jimbot runs on node.js platform. It uses [facebook-chat-api](https://github.com/Schmavery/facebook-chat-api) as the main component. The bot latches onto a Facebook account, and listens to all incoming messages for triggers. User can add the bot  to any group chat, or simply message the bot to see its response.
+
 -----------------------------------------------------------
 ## Install and run
 ```bash
@@ -14,6 +16,7 @@ npm start
 * [`@color`](DOCS.md#color)
 * [`@meme`](DOCS.md#meme)
 * [`@weather`](DOCS.md#weather)
+
 -----------------------------------------------------------
 ## Versions
 - 0.1.0: Initial framework.
