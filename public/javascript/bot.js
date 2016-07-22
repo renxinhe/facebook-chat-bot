@@ -161,7 +161,6 @@ function getTicker(api, threadID, body) {
 		if (err) {
 			console.log(err);
 		} else if (snapshot.name != null) {
-			console.log(snapshot);
 			var message = snapshot.name + ' (' + snapshot.symbol + ') last traded at $' + 
 				snapshot.lastTradePriceOnly.toFixed(2) + ' on ' + snapshot.lastTradeDate + '.\n' +
 				'Volume: ' + snapshot.volume + ' | P/E Ratio: ' + snapshot.peRatio + '\n' +
