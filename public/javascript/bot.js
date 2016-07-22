@@ -164,7 +164,7 @@ function getTicker(api, threadID, body) {
 			var message = snapshot.name + ' (' + snapshot.symbol + ') last traded at $' + 
 				snapshot.lastTradePriceOnly.toFixed(2) + ' on ' + snapshot.lastTradeDate + '.\n' +
 				'Volume: ' + snapshot.volume + ' | P/E Ratio: ' + snapshot.peRatio + '\n' +
-				'Change: ' + snapshot.change.toFixed(2) + ' | % Change: ' + (snapshot.changeInPercent * 100) + '%';
+				'Change: $' + snapshot.change.toFixed(2) + ' | % Change: ' + (snapshot.changeInPercent * 100) + '%';
 
 			api.sendMessage(message, threadID);
 		} else {
