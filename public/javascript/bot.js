@@ -3,30 +3,46 @@ var login = require("facebook-chat-api");
 var weather = require("weather-js");
 
 // Reading user login info
-var EMAIL_PATTERN = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-var schema = {
-	properties: {
-	  	email: {
-	    	pattern: EMAIL_PATTERN,
-	    	message: "Email format only. E.g.: foo@bar.com",
-	    	required: true
-	  	},
-	 	password: {
-	 		hidden: true,
-	    	replace: '*',
-	    	required: true
-	  	}
-	}
-};
+if (process.env.USE_CLI === 'true') {
+	var EMAIL_PATTERN = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+	var schema = {
+		properties: {
+		  	email: {
+		    	pattern: EMAIL_PATTERN,
+		    	message: "Email format only. E.g.: foo@bar.com",
+		    	required: true
+		  	},
+		 	password: {
+		 		hidden: true,
+		    	replace: '*',
+		    	required: true
+		  	}
+		}
+	};
 
-var userAPI, email;
-prompt.start();
-prompt.get(schema, function(err, result){
-	if (err) {
-		return console.error(err);
-	}
-	email = result.email;
-	login({email: result.email, password: result.password}, 
+	var userAPI, email;
+	prompt.start();
+	prompt.get(schema, function(err, result){
+		if (err) {
+			return console.error(err);
+		}
+		email = result.email;
+		login({email: result.email, password: result.password}, 
+			{selfListen: true}, 
+			function(err, api) {
+				if (err) {
+					return console.error(err);
+				}
+				userAPI = api;
+				console.log("\"" + email + "\" logged in!");
+				// Bot listener
+				userAPI.listen(listenerCallback);
+			}
+		);
+	});
+} else {
+	email = process.env.BOT_EMAIL;
+	login({email: process.env.BOT_EMAIL, password: process.env.BOT_PASSWORD}, 
 		{selfListen: true}, 
 		function(err, api) {
 			if (err) {
@@ -38,7 +54,7 @@ prompt.get(schema, function(err, result){
 			userAPI.listen(listenerCallback);
 		}
 	);
-});
+}
 
 function listenerCallback(err, event) {
 	switch (event.type) {
