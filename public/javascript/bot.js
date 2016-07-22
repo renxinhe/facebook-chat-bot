@@ -139,7 +139,7 @@ function getWeather(api, threadID, body) {
 						message += ('\n' + day.date + ' | Low: ' + day.low + ', High: ' + day.high + '. Precipitation: ' + day.precip + '%');
 					});
 					api.sendMessage(message, threadID);
-					console.log('Weather info sent to ' + threadID);
+					console.log('Weather info for ' + data.location.name + ' sent to ' + threadID);
 				}
 			});
 			if (end != undefined) {
@@ -165,8 +165,10 @@ function getTicker(api, threadID, body) {
 				snapshot.lastTradePriceOnly.toFixed(2) + ' on ' + snapshot.lastTradeDate + '.\n' +
 				'Volume: ' + snapshot.volume + ' | P/E Ratio: ' + snapshot.peRatio + '\n' +
 				'Change: $' + snapshot.change.toFixed(2) + ' | % Change: ' + (snapshot.changeInPercent * 100) + '%';
+				// TODO: toFixed() will throw error on null values, so check for this beforehand
 
 			api.sendMessage(message, threadID);
+			console.log('Stock info for ' + ticker + ' sent to ' + threadID);
 		} else {
 			// If no company name returned
 			api.sendMessage('Ticker ' + ticker + ' not found.' , threadID);
