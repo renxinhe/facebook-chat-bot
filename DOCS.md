@@ -6,7 +6,7 @@
 --------------------------------------------------
 <a name="color"/>
 
-### @color
+## @color
 
 This trigger can set the color of a chat thread.
 
@@ -27,7 +27,7 @@ __Example__
 --------------------------------------------------
 <a name="meme"/>
 
-### @meme
+## @meme
 
 This sends the thread a [rickroll YouTube link](https://www.youtube.com/watch?v=dQw4w9WgXcQ).
 
@@ -53,7 +53,7 @@ __Example__
 --------------------------------------------------
 <a name="weather"/>
 
-### @weather
+## @weather
 
 This posts weather information of a given location.
 
