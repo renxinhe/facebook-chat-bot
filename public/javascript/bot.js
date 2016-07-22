@@ -27,7 +27,7 @@ if (process.env.USE_CLI === 'true') {
 		}
 	};
 
-	var userAPI, email;
+	var userAPI, email, stopListening;
 	prompt.start();
 	prompt.get(schema, function(err, result){
 		if (err) {
@@ -43,7 +43,7 @@ if (process.env.USE_CLI === 'true') {
 				userAPI = api;
 				console.log("\"" + email + "\" logged in!");
 				// Bot listener
-				userAPI.listen(listenerCallback);
+				stopListening = userAPI.listen(listenerCallback);
 			}
 		);
 	});
@@ -58,12 +58,16 @@ if (process.env.USE_CLI === 'true') {
 			userAPI = api;
 			console.log("\"" + email + "\" logged in!");
 			// Bot listener
-			userAPI.listen(listenerCallback);
+			stopListening = userAPI.listen(listenerCallback);
 		}
 	);
 }
 
 function listenerCallback(err, event) {
+	if (err) {
+		stopListening();
+		return console.error(err);
+	}
 	switch (event.type) {
 		case "message":
 		messageHandler(event);
@@ -149,6 +153,9 @@ function getWeather(api, threadID, body) {
 
 // Exit -- logout user
 function exitHandler(options, err) {
+	stopListening();
+	console.log('Stopped listening.');
+
 	if (err) {
 		return console.error(err.stack);
 	}
@@ -156,7 +163,7 @@ function exitHandler(options, err) {
     	if (email != undefined && userAPI != undefined) {
 	    	console.log("Logging out \"" + email + "\"...");
 	    	userAPI.logout(function(err) {
-	    		console.error(err);
+	    		console.error(err.stack);
 	    	});
 	    	email = undefined;
 	    	userAPI = undefined;
