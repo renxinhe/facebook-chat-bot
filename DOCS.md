@@ -1,8 +1,8 @@
 # Usage
 * [`color`](#color)
+* [`help`](#help)
 * [`meme`](#meme)
 * [`weather`](#weather)
-* [`help`](#help)
 
 --------------------------------------------------
 <a name="color"/>
@@ -24,6 +24,28 @@ __Example__
 >`@color #0084FF`
 
 *This will set the chat thread color to Facebook messenger blue.*
+
+--------------------------------------------------
+<a name="help"/>
+## @help
+
+This lists available commands and lists information about each one.
+
+__Usage__
+
+`@help`
+
+`@help [command]`
+
+__Arguements__
+
+* `command` (optional): Name of one of available commands
+
+__Examples__
+
+>`@help`
+
+>`@help weather`
 
 --------------------------------------------------
 <a name="meme"/>
@@ -91,24 +113,3 @@ Here's your 5-day forecast:\
 2016-07-24 | Low: 82, High: 91. Precipitation: 0%\
 2016-07-25 | Low: 82, High: 94. Precipitation: 60%
 
---------------------------------------------------
-<a name="help"/>
-## @help
-
-This lists available commands and lists information about each one.
-
-__Usage__
-
-`@help`
-
-`@help [command]`
-
-__Arguements__
-
-* `command` (optional): Name of one of available commands
-
-__Examples__
-
->`@help`
-
->`@help weather`
