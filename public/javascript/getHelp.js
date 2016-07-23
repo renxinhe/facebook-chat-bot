@@ -43,6 +43,7 @@
         }
         else {
                 api.sendMessage("Error: Unidentified command", threadID);
+                worked = 0;
         }
         //to expand upon expansion
         if(command.length==0) {
