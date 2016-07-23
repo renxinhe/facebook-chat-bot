@@ -97,7 +97,7 @@ function messageHandler(event) {
 		// getWeather
 		} else if ((/^@weather ([0-9]{5}|([a-zA-Z ]+(, )?[a-zA-Z ]+))$/).test(message)) {
 			handlerFunctions['getWeather'](userAPI, event.threadID, message);
-		//getRandom
+		//getHelp
 		} else if ((/^@help$/).test(message)) {
 			handlerFunctions['getHelp'](userAPI,event.threadID,message);
 		}
