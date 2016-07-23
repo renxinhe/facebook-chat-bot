@@ -76,6 +76,7 @@ var handlerFunctionNames = [
 	'getWeather',
 	'rickroll',
 	'setThreadColor',
+	'getRandom',
 	// TODO: add more handlers
 ];
 
@@ -96,6 +97,9 @@ function messageHandler(event) {
 		// getWeather
 		} else if ((/^@weather ([0-9]{5}|([a-zA-Z ]+(, )?[a-zA-Z ]+))$/).test(message)) {
 			handlerFunctions['getWeather'](userAPI, event.threadID, message);
+		//getRandom
+		} else if ((/^@random$/).test(message)) {
+			handlerFunctions['getRandom'](userAPI,event.threadID,message);
 		}
 		// TODO: add more handlers
 	}
