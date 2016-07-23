@@ -73,10 +73,11 @@ function listenerCallback(err, event) {
 // Bot handlers
 var handlerFunctions = {};
 var handlerFunctionNames = [
+	'getHelp',
 	'getWeather',
 	'rickroll',
 	'setThreadColor',
-	'getHelp',
+	
 	// TODO: add more handlers
 ];
 
@@ -98,7 +99,7 @@ function messageHandler(event) {
 		} else if ((/^@weather ([0-9]{5}|([a-zA-Z ]+(, )?[a-zA-Z ]+))$/).test(message)) {
 			handlerFunctions['getWeather'](userAPI, event.threadID, message);
 		//getHelp
-		} else if ((/^@help$/).test(message)) {
+		} else if ((/^@help$/).test(message) || (/^@help.+$/).test(message)) {
 			handlerFunctions['getHelp'](userAPI,event.threadID,message);
 		}
 		// TODO: add more handlers
