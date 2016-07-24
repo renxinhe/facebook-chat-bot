@@ -90,7 +90,7 @@ function messageHandler(event) {
 	var message = event.body;
 	if (message != null) {
 		//getHelp
-		if ((/^@help$/).test(message) || (/^@help.+$/).test(message)) {
+		if ((/^@help.*$/).test(message)) {
 			handlerFunctions['getHelp'](userAPI,event.threadID,message);
 		// getWeather
 		} else if ((/^@weather ([0-9]{5}|([a-zA-Z ]+(, )?[a-zA-Z ]+))$/).test(message)) {
