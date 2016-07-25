@@ -1,5 +1,5 @@
-var prompt = require("prompt");
-var login = require("facebook-chat-api");
+var prompt = require('prompt');
+var login = require('facebook-chat-api');
 
 // Reading user login info
 if (process.env.USE_CLI === 'true') {
@@ -8,7 +8,7 @@ if (process.env.USE_CLI === 'true') {
 		properties: {
 		  	email: {
 		    	pattern: EMAIL_PATTERN,
-		    	message: "Email format only. E.g.: foo@bar.com",
+		    	message: 'Email format only. E.g.: foo@bar.com',
 		    	required: true
 		  	},
 		 	password: {
@@ -33,7 +33,7 @@ if (process.env.USE_CLI === 'true') {
 					return console.error(err);
 				}
 				userAPI = api;
-				console.log("\"" + email + "\" logged in!");
+				console.log('"' + email + '" logged in!');
 				// Bot listener
 				stopListening = userAPI.listen(listenerCallback);
 			}
@@ -48,7 +48,7 @@ if (process.env.USE_CLI === 'true') {
 				return console.error(err);
 			}
 			userAPI = api;
-			console.log("\"" + email + "\" logged in!");
+			console.log('"' + email + '" logged in!');
 			// Bot listener
 			stopListening = userAPI.listen(listenerCallback);
 		}
@@ -61,7 +61,7 @@ function listenerCallback(err, event) {
 		return console.error(err);
 	}
 	switch (event.type) {
-		case "message":
+		case 'message':
 		messageHandler(event);
 		break;
 		// TODO: add more event types
@@ -118,14 +118,14 @@ function exitHandler(options, err) {
 	}
     if (options.cleanup || options.exit) {
     	if (email != undefined && userAPI != undefined) {
-	    	console.log("Logging out \"" + email + "\"...");
+	    	console.log('Logging out "' + email + '"...');
 	    	userAPI.logout(function(err) {
 	    		console.error(err);
 	    	});
 	    	email = undefined;
 	    	userAPI = undefined;
     	} else {
-    		return console.log("No active session. Closing...")
+    		return console.log('No active session. Closing...')
     	}
     } else if (options.exception) {
     		return console.error(err);
