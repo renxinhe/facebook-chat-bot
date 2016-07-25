@@ -26,3 +26,4 @@ npm start
 - 0.1.3: Added weather functionality.
 - 0.2.0: Migrated to Heroku worker dyno from local.
 - 0.2.1: Modularized handler functions.
+- 0.2.2: Added help command.
