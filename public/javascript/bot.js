@@ -74,6 +74,7 @@ function listenerCallback(err, event) {
 var handlerFunctions = {};
 var handlerFunctionNames = [
 	'getHelp',
+	'getStock',
 	'getWeather',
 	'rickroll',
 	'setThreadColor',
@@ -89,16 +90,14 @@ for (var i = 0; i < handlerFunctionNames.length; i++) {
 function messageHandler(event) {
 	var message = event.body;
 	if (message != null) {
-		//getHelp
 		if ((/^@help.*$/).test(message)) {
 			handlerFunctions['getHelp'](userAPI,event.threadID,message);
-		// getWeather
+		} else if ((/^@stock .+$/).test(message)) {
+			handlerFunctions['getStock'](userAPI, event.threadID, message);
 		} else if ((/^@weather ([0-9]{5}|([a-zA-Z ]+(, )?[a-zA-Z ]+))$/).test(message)) {
 			handlerFunctions['getWeather'](userAPI, event.threadID, message);
-		// rickroll
 		} else if ((/^@meme$/).test(message)) {
 			handlerFunctions['rickroll'](userAPI, event.threadID);
-		// setThreadColor
 		} else if ((/^@color \#[0-9A-Fa-f]{6}$/).test(message)) {
 			handlerFunctions['setThreadColor'](userAPI, event.threadID, message);
 		}

@@ -1,6 +1,6 @@
 {
   "name": "jimbot",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A Facebook messenger ultility bot",
   "engines": {
     "node": "4.4.5"
@@ -14,7 +14,8 @@
     "express": "^4.14.0",
     "facebook-chat-api": "^1.1.0",
     "prompt": "^1.0.0",
-    "weather-js": "^1.0.2"
+    "weather-js": "^1.0.2",
+    "yahoo-finance": "^0.2.12"
   },
   "repository": {
     "type": "git",
