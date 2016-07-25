@@ -16,6 +16,7 @@ npm start
 * [`@color`](DOCS.md#color)
 * [`@help`](DOCS.md#help)
 * [`@meme`](DOCS.md#meme)
+* [`@stock`](DOCS.md#stock)
 * [`@weather`](DOCS.md#weather)
 
 -----------------------------------------------------------
@@ -27,3 +28,4 @@ npm start
 - 0.2.0: Migrated to Heroku worker dyno from local.
 - 0.2.1: Modularized handler functions.
 - 0.2.2: Added help command.
+- 0.2.3: Added stock functionality.

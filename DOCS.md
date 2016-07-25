@@ -2,6 +2,7 @@
 * [`color`](#color)
 * [`help`](#help)
 * [`meme`](#meme)
+* ['stock'](#stock)
 * [`weather`](#weather)
 
 --------------------------------------------------
@@ -72,6 +73,31 @@ __Example__
 
 
 *Never gonna give you up, never gonna let you down. Never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye. Never gonna tell a lie and hurt you…*
+
+--------------------------------------------------
+<a name="stock"/>
+
+## @stock
+
+This sends the thread a [rickroll YouTube link](https://www.youtube.com/watch?v=dQw4w9WgXcQ).
+
+[![Never Gonna Give You Up](http://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](http://www.youtube.com/watch?v=dQw4w9WgXcQ)
+
+__Usage__
+
+`@stock <symbol>`
+
+__Arguments__
+
+* 'symbol': Stock symbol. (Currently only supporting US stocks)
+
+__Example__
+
+>`@stock GOOGL`
+
+>Alphabet Inc. (GOOGL) last traded at $757.52 on Mon Jul 25 2016 00:00:00 GMT-0700 (Pacific Daylight Time).
+Volume: 1073278 | P/E Ratio: 30.82
+Change: $-1.76 | % Change: -0.22999999999999998%
 
 --------------------------------------------------
 <a name="weather"/>
