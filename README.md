@@ -14,6 +14,7 @@ npm start
 -----------------------------------------------------------
 ## Usage:
 * [`@color`](DOCS.md#color)
+* [`@help`](DOCS.md#help)
 * [`@meme`](DOCS.md#meme)
 * [`@weather`](DOCS.md#weather)
 
