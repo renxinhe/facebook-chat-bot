@@ -79,9 +79,7 @@ __Example__
 
 ## @stock
 
-This sends the thread a [rickroll YouTube link](https://www.youtube.com/watch?v=dQw4w9WgXcQ).
-
-[![Never Gonna Give You Up](http://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](http://www.youtube.com/watch?v=dQw4w9WgXcQ)
+This retrieves stock data for a given stock.
 
 __Usage__
 
@@ -97,7 +95,7 @@ __Example__
 
 >Alphabet Inc. (GOOGL) last traded at $757.52 on Mon Jul 25 2016 00:00:00 GMT-0700 (Pacific Daylight Time).
 Volume: 1073278 | P/E Ratio: 30.82
-Change: $-1.76 | % Change: -0.22999999999999998%
+Change: $-1.76 | % Change: -0.23%
 
 --------------------------------------------------
 <a name="weather"/>

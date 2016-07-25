@@ -17,7 +17,7 @@ module.exports = function getStock(api, threadID, body) {
 			var message = snapshot.name + ' (' + snapshot.symbol + ') last traded at $' + 
 				snapshot.lastTradePriceOnly.toFixed(2) + ' on ' + snapshot.lastTradeDate + '.\n' +
 				'Volume: ' + snapshot.volume + ' | P/E Ratio: ' + snapshot.peRatio + '\n' +
-				'Change: $' + snapshot.change.toFixed(2) + ' | % Change: ' + (snapshot.changeInPercent * 100) + '%';
+				'Change: $' + snapshot.change.toFixed(2) + ' | % Change: ' + (snapshot.changeInPercent * 100).toFixed(2) + '%';
 				// TODO: toFixed() will throw error on null values, so check for this beforehand
 
 			api.sendMessage(message, threadID);
