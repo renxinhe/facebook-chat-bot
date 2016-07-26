@@ -3,7 +3,7 @@
   "version": "0.2.3",
   "description": "A Facebook messenger ultility bot",
   "engines": {
-    "node": "4.4.5"
+    "node": "^4.4.5"
   },
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,8 @@
     "facebook-chat-api": "^1.1.0",
     "prompt": "^1.0.0",
     "weather-js": "^1.0.2",
-    "yahoo-finance": "^0.2.12"
+    "yahoo-finance": "^0.2.12",
+    "request": "^2.74.0"
   },
   "repository": {
     "type": "git",
