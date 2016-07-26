@@ -77,6 +77,7 @@ var handlerFunctionNames = [
 	'getStock',
 	'getWeather',
 	'rickroll',
+	'saveLocation',
 	'setThreadColor',
 	
 	// TODO: add more handlers
@@ -89,7 +90,7 @@ for (var i = 0; i < handlerFunctionNames.length; i++) {
 
 function messageHandler(event) {
 	var message = event.body;
-	if (message != null) {
+	if (message != undefined) {
 		if ((/^@help.*$/).test(message)) {
 			handlerFunctions['getHelp'](userAPI,event.threadID,message);
 		} else if ((/^@stock .+$/).test(message)) {
@@ -101,9 +102,39 @@ function messageHandler(event) {
 		} else if ((/^@color \#[0-9A-Fa-f]{6}$/).test(message)) {
 			handlerFunctions['setThreadColor'](userAPI, event.threadID, message);
 		}
-		
-		
-		// TODO: add more handlers
+	}
+
+	for (var i = 0; i < event.attachments.length; i++) {
+		var attachment = event.attachments[i];
+		switch (attachment['type']) {
+			case 'sticker':
+			// TODO: sticker handler
+			break;
+			case 'file':
+			// TODO: file handler
+			break;
+			case 'photo':
+			// TODO: photo handler
+			break;
+			case 'animated_image':
+			// TODO: animated_image handler
+			break;
+			case 'share':
+			if ((/^https\:\/\/external\.xx\.fbcdn\.net\/static_map\.php\?/).test(attachment['image'])) {
+				var COORD_PATTERN = /\-?\d{1,3}\.\d+/g;
+				var coords = attachment['image'].match(COORD_PATTERN);
+				if (coords.length != 2) {
+					return console.error('Bad coordinate parsing.');
+				}
+				handlerFunctions['saveLocation'](userAPI, event.timestamp, event.senderID, coords[0], coords[1]);
+			}
+			break;
+			case 'video':
+			// TODO: video handler
+			break;
+			default:
+			break;
+		}
 	}
 }
 
