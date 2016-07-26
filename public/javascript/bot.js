@@ -27,7 +27,7 @@ if (process.env.USE_CLI === 'true') {
 		}
 		email = result.email;
 		login({email: result.email, password: result.password}, 
-			{selfListen: true}, 
+			{selfListen: true, forceLogin: true}, 
 			function(err, api) {
 				if (err) {
 					return console.error(err);
@@ -42,7 +42,7 @@ if (process.env.USE_CLI === 'true') {
 } else {
 	email = process.env.BOT_EMAIL;
 	login({email: process.env.BOT_EMAIL, password: process.env.BOT_PASSWORD}, 
-		{selfListen: true}, 
+		{selfListen: true, forceLogin: true}, 
 		function(err, api) {
 			if (err) {
 				return console.error(err);
@@ -85,8 +85,9 @@ var handlerFunctionNames = [
 
 for (var i = 0; i < handlerFunctionNames.length; i++) {
 	// Load external functions
-	handlerFunctions[handlerFunctionNames[i]] = require('./' + handlerFunctionNames[i]);
+	handlerFunctions[handlerFunctionNames[i]] = require('./' + handlerFunctionNames[i] + '.js');
 }
+console.log(handlerFunctions.saveLocation);
 
 function messageHandler(event) {
 	var message = event.body;
