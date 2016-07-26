@@ -2,7 +2,7 @@
 * [`color`](#color)
 * [`help`](#help)
 * [`meme`](#meme)
-* ['stock'](#stock)
+* [`stock`](#stock)
 * [`weather`](#weather)
 
 --------------------------------------------------
