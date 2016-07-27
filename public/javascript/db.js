@@ -1,5 +1,5 @@
 /**
- * @file dj.js
+ * @file db.js
  * Basic construction of MongoDB.
  *
  */
@@ -8,7 +8,8 @@ var mongoose = require('mongoose');
 if (process.env.MONGODB_URI == undefined) {
 	return console.error('No database found.')
 } else {
-	mongoose.connect(process.env.MONGODB_URI, function(err){
+    var url = process.env.MONGODB_URI;
+	mongoose.connect(url, function(err){
 		console.error(err);
 	});
 }

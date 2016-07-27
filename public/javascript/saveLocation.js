@@ -5,9 +5,9 @@
  */
 
 module.exports = function saveLocation(api, time, ID, lat, lon) {
-	var locationModel = require('./model.js').Location;
+	var Location = require('./model.js').Location;
 
-	var location = new locationModel({
+	var newLocation = new Location({
 		timestamp: Date(time),
 		userID: String(ID),
 		latitude: parseFloat(lat),
@@ -15,7 +15,7 @@ module.exports = function saveLocation(api, time, ID, lat, lon) {
 	});
 
 	var IDQuery = {userID: String(ID)};
-	locationModel.findOneAndUpdate(IDQuery, location, {upsert: true}, function(err, location) {
+	Location.findOneAndUpdate(IDQuery, newLocation, {upsert: true}, function(err, location) {
 		if (err) {
 			console.error(err);
 		} else {
