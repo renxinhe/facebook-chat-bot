@@ -1,21 +1,23 @@
 {
   "name": "jimbot",
-  "version": "0.1.4",
+  "version": "0.2.3",
   "description": "A Facebook messenger ultility bot",
   "engines": {
-    "node": "4.4.5"
+    "node": "^4.4.5"
   },
   "main": "index.js",
   "scripts": {
     "start": "node ./public/javascript/bot.js"
   },
   "dependencies": {
-    "ejs": "2.4.1",
-    "express": "4.14.0",
-    "facebook-chat-api": "1.1.0",
-    "prompt": "1.0.0",
+    "ejs": "^2.4.1",
+    "express": "^4.14.0",
+    "facebook-chat-api": "^1.1.0",
+    "prompt": "^1.0.0",
     "weather-js": "^1.0.2",
-    "yahoo-finance": "^0.2.12"
+    "yahoo-finance": "^0.2.12",
+    "request": "^2.74.0",
+    "mongoose": "^4.5.7"
   },
   "repository": {
     "type": "git",
