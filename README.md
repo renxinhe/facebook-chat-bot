@@ -1,5 +1,5 @@
 # Jimbot
-A messenger ultility bot.
+A messenger utility bot.
 
 To run the bot:
 
