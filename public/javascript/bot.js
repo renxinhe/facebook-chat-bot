@@ -74,6 +74,7 @@ function listenerCallback(err, event) {
 var handlerFunctions = {};
 var handlerFunctionNames = [
     'getHelp',
+    'getPokemon',
     'getStock',
     'getWeather',
     'rickroll',
@@ -92,7 +93,9 @@ function messageHandler(event) {
     var message = event.body;
     if (message != undefined) {
         if ((/^@help.*$/).test(message)) {
-            handlerFunctions['getHelp'](userAPI,event.threadID,message);
+            handlerFunctions['getHelp'](userAPI, event.threadID, message);
+        } else if ((/^@pokemon.*$/).test(message)) { // TODO: temporary regex
+            handlerFunctions['getPokemon'](userAPI, event.threadID, event.senderID, message);
         } else if ((/^@stock .+$/).test(message)) {
             handlerFunctions['getStock'](userAPI, event.threadID, message);
         } else if ((/^@weather ([0-9]{5}|([a-zA-Z ]+(, )?[a-zA-Z ]+))$/).test(message)) {
