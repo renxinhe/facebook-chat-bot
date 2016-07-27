@@ -87,7 +87,7 @@ for (var i = 0; i < handlerFunctionNames.length; i++) {
 	// Load external functions
 	handlerFunctions[handlerFunctionNames[i]] = require('./' + handlerFunctionNames[i] + '.js');
 }
-console.log(handlerFunctions.saveLocation);
+console.log(handlerFunctions);
 
 function messageHandler(event) {
 	var message = event.body;
@@ -141,8 +141,10 @@ function messageHandler(event) {
 
 // Exit -- logout user
 function exitHandler(options, err) {
-	stopListening();
-	console.log('Stopped listening.');
+	if (typeof stopListening == 'function') {
+		stopListening();
+		console.log('Stopped listening.');
+	}
 
 	if (err) {
 		return console.error(err);
