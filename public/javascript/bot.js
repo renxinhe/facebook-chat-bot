@@ -87,7 +87,6 @@ for (var i = 0; i < handlerFunctionNames.length; i++) {
 	// Load external functions
 	handlerFunctions[handlerFunctionNames[i]] = require('./' + handlerFunctionNames[i] + '.js');
 }
-console.log(handlerFunctions);
 
 function messageHandler(event) {
 	var message = event.body;
@@ -146,9 +145,9 @@ function exitHandler(options, err) {
 		console.log('Stopped listening.');
 	}
 
-	if (err) {
-		return console.error(err);
-	}
+	// if (err) {
+	// 	return console.error(err);
+	// }
     if (options.cleanup || options.exit) {
     	if (email != undefined && userAPI != undefined) {
 	    	console.log('Logging out "' + email + '"...');
@@ -160,8 +159,6 @@ function exitHandler(options, err) {
     	} else {
     		return console.log('No active session. Closing...')
     	}
-    } else if (options.exception) {
-    		return console.error(err);
     }
     return;
 }
@@ -171,6 +168,3 @@ process.on('exit', exitHandler.bind(null,{cleanup:true}));
 
 //catches ctrl+c event
 process.on('SIGINT', exitHandler.bind(null, {exit:true}));
-
-//catches uncaught exceptions
-process.on('uncaughtException', exitHandler.bind(null, {exception:true}));
