@@ -3,6 +3,7 @@
  * Handler for stock information.
  *
  */
+ 
 var yahooFinance = require("yahoo-finance");
 
 module.exports = function getStock(api, threadID, body) {

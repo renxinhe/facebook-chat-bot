@@ -3,6 +3,7 @@
  * Handler for getting the pokemon around a given location
  *
  */
+ 
 var request = require('request');
 
 function getToken(latitude, longitude) {

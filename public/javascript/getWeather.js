@@ -3,6 +3,7 @@
  * Handler for getting weather information.
  *
  */
+ 
 var weather = require("weather-js");
 
 module.exports = function getWeather(api, threadID, body) {
