@@ -72,7 +72,7 @@ module.exports = function getWeather(api, threadID, body) {
 					// Concatenate forecast to message
 					data.forecast.forEach(function(day, index) {
 						message += ('\n' + day.date + ' | Low: ' + day.low + ', High: ' + day.high + '.');
-						if (index !== 1) {
+						if (index !== 0) {
 							message += ' Precipitation: ' + day.precip + '%';
 						}
 					});
