@@ -4,7 +4,10 @@
  *
  */
 
-module.exports = function saveLocation(api, time, ID, lat, lon) {
+module.exports = function saveLocation(api, event, lat, lon) {
+    var time = event.timestamp;
+    var ID = event.senderID;
+    var threadID = event.threadID;
     var Location = require('./model.js').Location;
 
     var newLocation = {
@@ -20,6 +23,11 @@ module.exports = function saveLocation(api, time, ID, lat, lon) {
             console.error(err);
         } else {
             console.log('Location for user "' + location.userID + '"" updated!');
+            api.markAsRead(threadID, function(err) {
+                if (err) {
+                    return console.error(err);
+                }
+            });
         }
     });
 }
