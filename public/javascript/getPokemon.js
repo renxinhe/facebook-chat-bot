@@ -117,11 +117,11 @@ function parsePokemonList(pokemon) {
 
         request
             .get(mapURL)
-            .pipe(fs.createWriteStream('temp_pokemon.png'))
+            .pipe(fs.createWriteStream('temp/temp_pokemon.png'))
             .on('close', function(response) {
                 var map = {
                     // body: "Fuck Javascript!",
-                    attachment: fs.createReadStream('temp_pokemon.png')
+                    attachment: fs.createReadStream('temp/temp_pokemon.png')
                 };
                 userAPI.sendMessage(map, userThreadID);
             });
