@@ -163,7 +163,6 @@ module.exports = function getPokemon(api, threadID, userID, body) {
     userAPI = api;
     userThreadID = threadID;
     parseBody(body);
-    console.log('threadID' + threadID);
 
     var Location = require('./model.js').Location;
     Location.where({userID: String(userID)}).findOne(function(err, location) {
