@@ -6,10 +6,15 @@ npm-debug.log
 *.env
 *.dev
 .DS_Store
+public/javascript/test.js
 
 # Docker
 Dockerfile
 docker-compose.yml
 
+# Temporary files
+temp/
+
 # Secret files
 secret.txt
+
