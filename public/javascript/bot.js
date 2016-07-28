@@ -94,7 +94,7 @@ function messageHandler(event) {
     if (message != undefined) {
         if ((/^@help.*$/).test(message)) {
             handlerFunctions['getHelp'](userAPI, event.threadID, message);
-        } else if ((/^@pokemon.*$/).test(message)) { // TODO: temporary regex
+        } else if ((/^@pokemon( \d{1,3}){0,5}$/).test(message)) { // TODO: temporary regex
             handlerFunctions['getPokemon'](userAPI, event.threadID, event.senderID, message);
         } else if ((/^@stock .+$/).test(message)) {
             handlerFunctions['getStock'](userAPI, event.threadID, message);
@@ -129,7 +129,7 @@ function messageHandler(event) {
                 if (coords.length != 2) {
                     return console.error('Bad coordinate parsing.');
                 }
-                handlerFunctions['saveLocation'](userAPI, event.timestamp, event.senderID, coords[0], coords[1]);
+                handlerFunctions['saveLocation'](userAPI, event, coords[0], coords[1]);
             }
             break;
             case 'video':
