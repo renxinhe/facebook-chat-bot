@@ -24,7 +24,7 @@ function getToken() {
         if (!error && res.statusCode == 200) {
             if (body.status == 'success') {
                 console.log('Token request success!');
-                setTimeout(function() {getPokemonList(body.jobId, MAX_RETRY_COUNT);}, POST_TOKEN_DELAY_MS);
+                setTimeout(function() {getPokemonList(body.jobId, MAX_JSON_RETRY_COUNT);}, POST_TOKEN_DELAY_MS);
                 return;
             } else {
                 userAPI.sendMessage('Cannot retreive API token. Please check www.pokevision.com for Pokemon Trainer Club status.', userThreadID);
