@@ -8,7 +8,7 @@ var request = require('request');
 const fs = require('fs');
 var userAPI, userThreadID, endTyping, latitude, longitude;
 const POST_TOKEN_DELAY_MS = 3000;
-const MAX_JSON_RETRY_COUNT = 3;
+const MAX_JSON_RETRY_COUNT = 4;
 
 // Flags
 var showList = false;
@@ -50,12 +50,19 @@ function getPokemonList(token, callCounter) {
         if (!err && res.statusCode == 200) {
             if (body.status == 'success') {
                 if (body.jobStatus == 'in_progress') {
-                    userAPI.sendMessage('Pokemon scanning in progress. Will retry ' + callCounter + ' more times.', userThreadID);
-                    setTimeout(function() {getPokemonList(body.jobId, callCounter);}, POST_TOKEN_DELAY_MS);
+                    var timeWord = callCounter <= 1 ? 'time' : 'times';
+                    userAPI.sendMessage('Pokemon scanning in progress. Will retry ' + callCounter + ' more ' + timeWord + '...', userThreadID);
+                    setTimeout(function() {getPokemonList(token, callCounter);}, POST_TOKEN_DELAY_MS);
                     return;
                 }
                 console.log('Pokemon JSON request success!');
-                parsePokemonList(body.pokemon);
+                if (body.pokemon != undefined) {
+                    parsePokemonList(body.pokemon);
+                    return;
+                } else {
+                    console.error('Pokemon JSON request URL: ' + pokemonRequest.url);
+                    return console.error('Pokemon API Response: ' + body);
+                }
                 return;
             } else {
                 userAPI.sendMessage('Pokemon API error. Please try another time.', userThreadID);
