@@ -8,6 +8,7 @@ var request = require('request');
 const fs = require('fs');
 var userAPI, userThreadID, endTyping, latitude, longitude;
 const POST_TOKEN_DELAY_MS = 3000;
+const MAX_JSON_RETRY_COUNT = 3;
 
 // Flags
 var showList = false;
@@ -23,7 +24,7 @@ function getToken() {
         if (!error && res.statusCode == 200) {
             if (body.status == 'success') {
                 console.log('Token request success!');
-                setTimeout(function() {getPokemonList(body.jobId);}, POST_TOKEN_DELAY_MS);
+                setTimeout(function() {getPokemonList(body.jobId, MAX_RETRY_COUNT);}, POST_TOKEN_DELAY_MS);
                 return;
             } else {
                 userAPI.sendMessage('Cannot retreive API token. Please check www.pokevision.com for Pokemon Trainer Club status.', userThreadID);
@@ -34,7 +35,13 @@ function getToken() {
     });
  }
 
-function getPokemonList(token) {
+function getPokemonList(token, callCounter) {
+    if (callCounter <= 0) {
+        userAPI.sendMessage('Pokemon API busy. Please try another time.', userThreadID);
+        return;
+    }
+    callCounter -= 1;
+
     var pokemonRequest = {
         url: 'https://pokevision.com/map/data/' + latitude + '/' + longitude +'/' + token,
         json: true
@@ -44,7 +51,8 @@ function getPokemonList(token) {
         if (!err && res.statusCode == 200) {
             if (body.status == 'success') {
                 if (body.jobStatus == 'in_progress') {
-                    userAPI.sendMessage('Pokemon API busy. Please try another time.', userThreadID);
+                    userAPI.sendMessage('Pokemon scanning in progress. Will retry ' + callCounter + ' more times.', userThreadID);
+                    setTimeout(function() {getPokemonList(body.jobId, callCounter);}, POST_TOKEN_DELAY_MS);
                     return;
                 }
                 console.log('Pokemon JSON request success!');
