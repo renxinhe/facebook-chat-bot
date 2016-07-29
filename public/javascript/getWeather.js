@@ -66,8 +66,8 @@ module.exports = function getWeather(api, threadID, body) {
                     }
 
                     var message = 'It is currently ' + data.current.temperature + '\xB0F and ' + data.current.skytext + emoji +
-                        ' in ' + data.location.name + '.\n' +
-                        'It feels like ' + data.current.feelslike + '\xB0F outside. Relative humidity is ' + data.current.humidity + '%.\n' +
+                        ' in ' + data.location.name + '.\n\n' +
+                        'It feels like ' + data.current.feelslike + '\xB0F outside. Relative humidity is ' + data.current.humidity + '%.\n\n' +
                         'Here\'s your 5-day forecast:';
 
                     // Concatenate forecast to message
