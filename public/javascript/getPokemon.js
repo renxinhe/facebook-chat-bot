@@ -39,7 +39,6 @@ function getPokemonList(token) {
         url: 'https://pokevision.com/map/data/' + latitude + '/' + longitude +'/' + token,
         json: true
     };
-    console.log(pokemonRequest.url);
     request(pokemonRequest, function (err, res, body) {
         if (!err && res.statusCode == 200) {
             if (body.status == 'success') {
@@ -106,22 +105,29 @@ function parsePokemonList(pokemon) {
         // Constructing static map URL
         var mapURL = 'https://maps.googleapis.com/maps/api/staticmap?';
         mapURL += 'center=' + latitude + ',' + longitude + '&';
+        mapURL += 'size=640x640&';
         mapURL += 'scale=2&';
+        mapURL += 'markers=' + latitude + ',' + longitude + '&';
         for (var i = 0; i < mapPokemonID.length; i++) {
             mapURL += 'markers=icon:http://pkmn.net/sprites/frlg/' + mapPokemonID[i] + '.png%7C';
             var pokemonListByID = pokemonIDDict[mapPokemonID[i]];
+            if (pokemonListByID == undefined) {
+                continue;
+            }
             for (var j = 0; j < pokemonListByID.length; j++) {
                 mapURL += pokemonListByID[j].latitude + ',' + pokemonListByID[j].longitude + '%7C';
             }
+            mapURL += '&';
         }
 
+        console.log(mapURL);
         request
             .get(mapURL)
-            .pipe(fs.createWriteStream('temp/temp_pokemon.png'))
+            .pipe(fs.createWriteStream('temp_pokemon.png'))
             .on('close', function(response) {
                 var map = {
                     // body: "Fuck Javascript!",
-                    attachment: fs.createReadStream('temp/temp_pokemon.png')
+                    attachment: fs.createReadStream('temp_pokemon.png')
                 };
                 userAPI.sendMessage(map, userThreadID);
             });
