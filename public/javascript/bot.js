@@ -79,6 +79,7 @@ var handlerFunctionNames = [
     'getWeather',
     'rickroll',
     'saveLocation',
+    'setEmoji',
     'setThreadColor',
     
     // TODO: add more handlers
@@ -104,6 +105,8 @@ function messageHandler(event) {
             handlerFunctions['rickroll'](userAPI, event.threadID);
         } else if ((/^@color \#[0-9A-Fa-f]{6}$/).test(message)) {
             handlerFunctions['setThreadColor'](userAPI, event.threadID, message);
+        } else if ((/^@emoji .+$/).test(message)) {
+            handlerFunctions['setEmoji'](userAPI, event.threadID, message);
         }
     }
 

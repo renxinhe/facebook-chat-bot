@@ -17,4 +17,4 @@ temp_pokemon.png
 
 # Secret files
 secret.txt
-
+*.swp

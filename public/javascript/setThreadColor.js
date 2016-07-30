@@ -1,5 +1,5 @@
 /**
- * @file getWeather.js
+ * @file setThreadColor.js
  * Handler for setting a thread's color.
  *
  */
