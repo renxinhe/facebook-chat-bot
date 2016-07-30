@@ -116,12 +116,26 @@ __Arguments__
 
 __Example__
 
->`@meme`
+>`@pokemon`
+```
+Pokemon nearby:
+#1 Bulbasaur:          1 found
+#4 Charmander:         1 found
+#13 Weedle:             2 found
+#16 Pidgey:             3 found
+#19 Rattata:            2 found
+#21 Spearow:            1 found
+#41 Zubat:              1 found
+#48 Venonat:            4 found
+#55 Golduck:            1 found
+#60 Poliwag:            2 found
+#69 Bellsprout:         1 found
+#127 Pinsir:             1 found
+#133 Eevee:              1 found
+```
+>`@pokemon 1 4 16 127 133`
 
->https://www.youtube.com/watch?v=dQw4w9WgXcQ
-
-
-*Never gonna give you up, never gonna let you down. Never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye. Never gonna tell a lie and hurt you…*
+> <img src="public/pokemon_example.png" width="400">
 
 --------------------------------------------------
 <a name="stock"/>
