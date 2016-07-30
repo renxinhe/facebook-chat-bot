@@ -16,7 +16,7 @@ module.exports = function setEmoji(api, threadID, body) {
         // node-emoji.get returns the same string but with colons
         // around it in the error case.
         if (emoji === ':' + emojiStr + ':') {
-            api.sendMessage("Could not find emoji '" + emojiStr + "'", threadID, function(err) {});
+            api.sendMessage("Could not find emoji '" + emojiStr + "'", threadID);
             console.log("Could not find emoji '" + emojiStr + "' for thread " + threadID);
             return
         }

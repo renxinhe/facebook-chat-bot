@@ -103,10 +103,10 @@ function messageHandler(event) {
             handlerFunctions['getWeather'](userAPI, event.threadID, message);
         } else if ((/^@meme$/).test(message)) {
             handlerFunctions['rickroll'](userAPI, event.threadID);
-        } else if ((/^@color \#[0-9A-Fa-f]{6}$/).test(message)) {
-            handlerFunctions['setThreadColor'](userAPI, event.threadID, message);
         } else if ((/^@emoji .+$/).test(message)) {
             handlerFunctions['setEmoji'](userAPI, event.threadID, message);
+        } else if ((/^@color \#[0-9A-Fa-f]{6}$/).test(message)) {
+            handlerFunctions['setThreadColor'](userAPI, event.threadID, message);
         }
     }
 
