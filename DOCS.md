@@ -1,7 +1,9 @@
 # Usage
 * [`color`](#color)
+* [`emoji`](#emoji)
 * [`help`](#help)
 * [`meme`](#meme)
+* [`pokemon`](#pokemon)
 * [`stock`](#stock)
 * [`weather`](#weather)
 
@@ -10,7 +12,7 @@
 
 ## @color
 
-This trigger can set the color of a chat thread.
+This sets the color of a chat thread.
 
 __Usage__
 
@@ -27,6 +29,28 @@ __Example__
 *This will set the chat thread color to Facebook messenger blue.*
 
 --------------------------------------------------
+<a name="emoji"/>
+
+## @emoji
+
+This sets the emoji of a chat thread.
+
+__Usage__
+
+`@emoji <emoji | description>`
+
+__Arguments__
+
+* `emoji`: The emoji you want the chat's to be set to.
+* `description`: A description of the emoji you want. The bot will use sp00ky NLP (not really) to determine the emoji to use.
+
+__Example__
+
+>`@emoji dog`
+
+*This will set the chat emoji to the dog emoji.*
+
+--------------------------------------------------
 <a name="help"/>
 ## @help
 
@@ -38,7 +62,7 @@ __Usage__
 
 `@help [command]`
 
-__Arguements__
+__Arguments__
 
 * `command` (optional): Name of one of available commands
 
@@ -75,6 +99,31 @@ __Example__
 *Never gonna give you up, never gonna let you down. Never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye. Never gonna tell a lie and hurt you…*
 
 --------------------------------------------------
+<a name="pokemon"/>
+
+## @pokemon
+
+This retrieves a list of Pokémon from Pokémon Go which are near the user's last dropped location pin. If a list of Pokémon id's are provided, it displays a map with the Pokémon drawn on it.
+
+__Usage__
+
+`@pokemon`
+`@pokemon <id1, id2, ... id5>`
+
+__Arguments__
+
+* `id` (up to 5): The Pokémon id's to draw the location of.
+
+__Example__
+
+>`@meme`
+
+>https://www.youtube.com/watch?v=dQw4w9WgXcQ
+
+
+*Never gonna give you up, never gonna let you down. Never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye. Never gonna tell a lie and hurt you…*
+
+--------------------------------------------------
 <a name="stock"/>
 
 ## @stock
@@ -87,7 +136,7 @@ __Usage__
 
 __Arguments__
 
-* 'symbol': Stock symbol. (Currently only supporting US stocks)
+* `symbol`: Stock symbol. (Currently only supporting US stocks)
 
 __Example__
 
