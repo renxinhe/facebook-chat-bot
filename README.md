@@ -33,3 +33,4 @@ npm start
 - 0.2.1: Modularized handler functions.
 - 0.2.2: Added help command.
 - 0.2.3: Added stock functionality.
+- 0.2.4: Added pokemon and set emoji functionality.

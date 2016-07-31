@@ -1,7 +1,7 @@
 {
   "name": "jimbot",
-  "version": "0.2.3",
-  "description": "A Facebook messenger ultility bot",
+  "version": "0.2.4",
+  "description": "A Facebook messenger utility bot",
   "engines": {
     "node": "^4.4.5"
   },
