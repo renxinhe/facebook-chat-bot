@@ -3,11 +3,12 @@
  * Handler for getting weather information.
  *
  */
+"use strict"
  
 var weather = require("weather-js");
 
 module.exports = function getWeather(api, threadID, body) {
-    var locale = body.substring('@weather '.length);
+    const locale = body.substring('@weather '.length);
     console.log('Fetching weather for ' + locale + '...');
     weather.find({ search: locale, degreeType: 'F' }, function(err, result) {
         if (err) {
@@ -15,13 +16,13 @@ module.exports = function getWeather(api, threadID, body) {
             console.error(err);
         } else if (result) {
             // Display typing indicator during async fetch and processing
-            var end = api.sendTypingIndicator(threadID, function(err) {
+            const end = api.sendTypingIndicator(threadID, function(err) {
                 if (err) {
                     console.log(err);
                 } else {
-                    var data = result[0];
-                    var skycode = parseInt(data.current.skycode, 10);
-                    var emoji;
+                    const data = result[0];
+                    const skycode = parseInt(data.current.skycode, 10);
+                    let emoji;
 
                     // Switch for emoji (emojis and grouping subject to change)
 
@@ -65,16 +66,17 @@ module.exports = function getWeather(api, threadID, body) {
                         emoji = '';
                     }
 
-                    var message = 'It is currently ' + data.current.temperature + '\xB0F and ' + data.current.skytext + emoji +
-                        ' in ' + data.location.name + '.\n\n' +
-                        'It feels like ' + data.current.feelslike + '\xB0F outside. Relative humidity is ' + data.current.humidity + '%.\n\n' +
-                        'Here\'s your 5-day forecast:';
+                    let message = 
+                        data.current.temperature + '\xB0F\n' + data.location.name + '\n' + data.current.skytext + emoji + '\n' +
+                        'Feels like ' + data.current.feelslike + '\xB0. Humidity ' + data.current.humidity + '%.\n';
 
                     // Concatenate forecast to message
-                    data.forecast.forEach(function(day, index) {
-                        message += ('\n' + day.date + ' | Low: ' + day.low + ', High: ' + day.high + '.');
-                        if (index !== 0) {
-                            message += ' Precipitation: ' + day.precip + '%';
+                    data.forecast.forEach(function(day) {
+                        const dateArray = day.date.split('-');
+                        const date = dateArray[1] + '-' + dateArray[2];
+                        message += ('\n' + date + ' | ' + day.low + '\xB0/' + day.high + '\xB0');
+                        if (day.precip.length > 0) {
+                            message += '  \u2614 ' + day.precip + '%';
                         }
                     });
                     api.sendMessage(message, threadID);

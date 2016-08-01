@@ -117,23 +117,25 @@ __Example__
 
 >`@weather 94158`
 
->It is currently 63°F and Mostly Sunny in San Francisco, CA.\
-It feels like 63°F outside. Relative humidity is 75%.\
-Here's your 5-day forecast:\
-2016-07-21 | Low: 53, High: 69. Precipitation: %\
-2016-07-22 | Low: 56, High: 70. Precipitation: 0%\
-2016-07-23 | Low: 55, High: 72. Precipitation: 0%\
-2016-07-24 | Low: 57, High: 73. Precipitation: 0%\
-2016-07-25 | Low: 56, High: 71. Precipitation: 40%
+>59°F  
+San Francisco, CA  
+Mostly Sunny :cloud:  
+Feels like 59°. Humidity 90%.  
+07-30 | 54°/68°  
+07-31 | 56°/69°  :umbrella: 0%  
+08-01 | 56°/71°  :umbrella: 10%  
+08-02 | 54°/69°  :umbrella: 0%  
+08-03 | 54°/69°  :umbrella: 0%  
 
 >`@weather New York, NY`
 
->It is currently 89°F and Mostly Sunny in New York, NY.\
-It feels like 94°F outside. Relative humidity is 55%.\
-Here's your 5-day forecast:\
-2016-07-21 | Low: 74, High: 89. Precipitation: %\
-2016-07-22 | Low: 82, High: 90. Precipitation: 10%\
-2016-07-23 | Low: 79, High: 98. Precipitation: 10%\
-2016-07-24 | Low: 82, High: 91. Precipitation: 0%\
-2016-07-25 | Low: 82, High: 94. Precipitation: 60%
+>73°F  
+New York, NY  
+Partly Cloudy :cloud:  
+Feels like 73°. Humidity 94%.  
+07-30 | 72°/80°  
+07-31 | 74°/78°  :umbrella: 80%  
+08-01 | 72°/79°  :umbrella: 80%  
+08-02 | 71°/76°  :umbrella: 80%  
+08-03 | 72°/78°  :umbrella: 60%
 
