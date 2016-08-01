@@ -172,12 +172,13 @@ This posts weather information of a given location.
 
 __Usage__
 
-`@weather <zipcode | location name>`
+`@weather <zipcode | location name> > <degree type>`
 
 __Arguments__
 
 * `zipcode`: A five digit US zipcode.
 * `location name`: A letter and space only location name, or city name and state separated by a comma and a space.
+* `degree type`: A degree type to display the weather, the parameter can be 'C' for Celsius or 'F' for Fahrenheit. The default type is Fahrenheit.
 
 __Example__
 
@@ -205,3 +206,14 @@ Feels like 73°. Humidity 94%.
 08-02 | 71°/76°  :umbrella: 80%  
 08-03 | 72°/78°  :umbrella: 60%
 
+>`@weather 78701 C`
+
+>37°C
+Austin, TX
+Sunny :sunny: 
+Feels like 37°. Humidity 35%.
+07-31 | 24°/35°
+08-01 | 24°/36°  :umbrella: 0%
+08-02 | 26°/37°  :umbrella: 0%
+08-03 | 26°/38°  :umbrella: 0%
+08-04 | 26°/37°  :umbrella: 30%
