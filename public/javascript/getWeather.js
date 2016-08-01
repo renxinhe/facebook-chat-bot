@@ -8,9 +8,22 @@
 var weather = require("weather-js");
 
 module.exports = function getWeather(api, threadID, body) {
-    const locale = body.substring('@weather '.length);
-    console.log('Fetching weather for ' + locale + '...');
-    weather.find({ search: locale, degreeType: 'F' }, function(err, result) {
+    var locale = '';
+    var currentDType = 'F';
+    const infoArray = body.split(' ');
+    for (var i = 1; i < infoArray.length; i++) {
+        if (i == 1) {
+            locale += infoArray[i];
+        } else {
+            if (i != infoArray.length - 1 || (i == infoArray.length - 1 && infoArray[infoArray.length - 1] != 'F' && infoArray[infoArray.length - 1] != 'C')) {
+                locale += ' ' + infoArray[i];
+            } else {
+                currentDType = infoArray[infoArray.length - 1];
+            }
+        }
+    }
+    console.log('Fetching weather for ' + locale + ' with degreeType ' + currentDType + '...');
+    weather.find({ search: locale, degreeType: currentDType }, function(err, result) {
         if (err) {
             api.sendMessage(err, threadID);
             console.error(err);
@@ -65,9 +78,9 @@ module.exports = function getWeather(api, threadID, body) {
                     } else {
                         emoji = '';
                     }
-
+                    var displayType = currentDType === 'F' ? '\xB0F\n' : '\xB0C\n';
                     let message = 
-                        data.current.temperature + '\xB0F\n' + data.location.name + '\n' + data.current.skytext + emoji + '\n' +
+                        data.current.temperature + displayType + data.location.name + '\n' + data.current.skytext + emoji + '\n' +
                         'Feels like ' + data.current.feelslike + '\xB0. Humidity ' + data.current.humidity + '%.\n';
 
                     // Concatenate forecast to message

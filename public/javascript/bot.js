@@ -99,7 +99,7 @@ function messageHandler(event) {
             handlerFunctions['getPokemon'](userAPI, event.threadID, event.senderID, message);
         } else if ((/^@stock .+$/).test(message)) {
             handlerFunctions['getStock'](userAPI, event.threadID, message);
-        } else if ((/^@weather ([0-9]{5}|([a-zA-Z ]+(, )?[a-zA-Z ]+))$/).test(message)) {
+        } else if ((/^@weather ([0-9]{5} [CF]|([a-zA-Z ]+(, )?[a-zA-Z ]+))$/).test(message)) {
             handlerFunctions['getWeather'](userAPI, event.threadID, message);
         } else if ((/^@meme$/).test(message)) {
             handlerFunctions['rickroll'](userAPI, event.threadID);
