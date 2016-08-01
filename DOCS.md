@@ -101,22 +101,23 @@ __Example__
 --------------------------------------------------
 <a name="pokemon"/>
 
-## @pokemon
+## ~~@pokemon~~
 
-This retrieves a list of Pokémon from Pokémon Go which are near the user's last dropped location pin. If a list of Pokémon id's are provided, it displays a map with the Pokémon drawn on it.
+~~This retrieves a list of Pokémon from Pokémon Go which are near the user's last dropped location pin. If a list of Pokémon id's are provided, it displays a map with the Pokémon drawn on it.~~
 
-__Usage__
+~~__Usage__~~
 
-`@pokemon`
-`@pokemon <id1, id2, ... id5>`
+~~`@pokemon`~~
 
-__Arguments__
+~~`@pokemon <id1, id2, ... id5>`~~
 
-* `id` (up to 5): The Pokémon id's to draw the location of.
+~~__Arguments__~~
 
-__Example__
+* ~~`id` (up to 5): The Pokémon id's to draw the location of.~~
 
->`@pokemon`
+~~__Example__~~
+
+>~~`@pokemon`~~
 ```
 Pokemon nearby:
 #1 Bulbasaur:          1 found
@@ -133,7 +134,7 @@ Pokemon nearby:
 #127 Pinsir:             1 found
 #133 Eevee:              1 found
 ```
->`@pokemon 1 4 16 127 133`
+>~~`@pokemon 1 4 16 127 133`~~
 
 > <img src="public/pokemon_example.png" width="400">
 

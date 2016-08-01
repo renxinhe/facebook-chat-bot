@@ -19,7 +19,7 @@ npm start
 * [`@emoji`](DOCS.md#emoji)
 * [`@help`](DOCS.md#help)
 * [`@meme`](DOCS.md#meme)
-* [`@pokemon`](DOCS.md#pokemon)
+* [~~`@pokemon`~~](DOCS.md#pokemon)
 * [`@stock`](DOCS.md#stock)
 * [`@weather`](DOCS.md#weather)
 
@@ -33,4 +33,5 @@ npm start
 - 0.2.1: Modularized handler functions.
 - 0.2.2: Added help command.
 - 0.2.3: Added stock functionality.
-- 0.2.4: Added pokemon and set emoji functionality.
+- 0.2.4: Added pokemon functionality.
+- 0.2.5: Added set emoji functionality.
