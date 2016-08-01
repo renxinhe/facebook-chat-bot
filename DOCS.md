@@ -208,12 +208,12 @@ Feels like 73°. Humidity 94%.
 
 >`@weather 78701 C`
 
->37°C
-Austin, TX
-Sunny :sunny: 
-Feels like 37°. Humidity 35%.
-07-31 | 24°/35°
-08-01 | 24°/36°  :umbrella: 0%
-08-02 | 26°/37°  :umbrella: 0%
-08-03 | 26°/38°  :umbrella: 0%
+>37°C  
+Austin, TX  
+Sunny :sunny:  
+Feels like 37°. Humidity 35%.  
+07-31 | 24°/35°  
+08-01 | 24°/36°  :umbrella: 0%  
+08-02 | 26°/37°  :umbrella: 0%  
+08-03 | 26°/38°  :umbrella: 0%  
 08-04 | 26°/37°  :umbrella: 30%
