@@ -103,6 +103,8 @@ __Example__
 
 ## ~~@pokemon~~
 
+_Deprecated on August 1st, 2016. A change in Niantic backend structure has disabled Pokevision._
+
 ~~This retrieves a list of Pokémon from Pokémon Go which are near the user's last dropped location pin. If a list of Pokémon id's are provided, it displays a map with the Pokémon drawn on it.~~
 
 ~~__Usage__~~
