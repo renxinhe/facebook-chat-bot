@@ -34,6 +34,9 @@ module.exports = function getHelp(api, threadID, body) {
         api.sendMessage("Examples:\nweather New York, NY\nweather Paris, France\nweather 75703", threadID);
         api.sendMessage("Note: Add @ at the beginning of every command", threadID);
     }
+    else if (go && command==='emoji') {
+        api.sendMessage("Usage of emoji:\nEnter the actual emoji or a description of the emoji, and the bot will try to set the chat emoji appropriately.");
+    }
     else if (go){
         api.sendMessage("Error: Unidentified command", threadID);
         worked = false;

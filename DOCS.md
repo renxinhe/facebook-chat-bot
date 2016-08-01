@@ -1,7 +1,9 @@
 # Usage
 * [`color`](#color)
+* [`emoji`](#emoji)
 * [`help`](#help)
 * [`meme`](#meme)
+* [`pokemon`](#pokemon)
 * [`stock`](#stock)
 * [`weather`](#weather)
 
@@ -10,7 +12,7 @@
 
 ## @color
 
-This trigger can set the color of a chat thread.
+This sets the color of a chat thread.
 
 __Usage__
 
@@ -27,6 +29,28 @@ __Example__
 *This will set the chat thread color to Facebook messenger blue.*
 
 --------------------------------------------------
+<a name="emoji"/>
+
+## @emoji
+
+This sets the emoji of a chat thread.
+
+__Usage__
+
+`@emoji <emoji | description>`
+
+__Arguments__
+
+* `emoji`: The emoji you want the chat's to be set to.
+* `description`: A description of the emoji you want. The bot will use sp00ky NLP (not really) to determine the emoji to use.
+
+__Example__
+
+>`@emoji dog`
+
+*This will set the chat emoji to the dog emoji.*
+
+--------------------------------------------------
 <a name="help"/>
 ## @help
 
@@ -38,7 +62,7 @@ __Usage__
 
 `@help [command]`
 
-__Arguements__
+__Arguments__
 
 * `command` (optional): Name of one of available commands
 
@@ -75,6 +99,45 @@ __Example__
 *Never gonna give you up, never gonna let you down. Never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye. Never gonna tell a lie and hurt you…*
 
 --------------------------------------------------
+<a name="pokemon"/>
+
+## @pokemon
+
+This retrieves a list of Pokémon from Pokémon Go which are near the user's last dropped location pin. If a list of Pokémon id's are provided, it displays a map with the Pokémon drawn on it.
+
+__Usage__
+
+`@pokemon`
+`@pokemon <id1, id2, ... id5>`
+
+__Arguments__
+
+* `id` (up to 5): The Pokémon id's to draw the location of.
+
+__Example__
+
+>`@pokemon`
+```
+Pokemon nearby:
+#1 Bulbasaur:          1 found
+#4 Charmander:         1 found
+#13 Weedle:             2 found
+#16 Pidgey:             3 found
+#19 Rattata:            2 found
+#21 Spearow:            1 found
+#41 Zubat:              1 found
+#48 Venonat:            4 found
+#55 Golduck:            1 found
+#60 Poliwag:            2 found
+#69 Bellsprout:         1 found
+#127 Pinsir:             1 found
+#133 Eevee:              1 found
+```
+>`@pokemon 1 4 16 127 133`
+
+> <img src="public/pokemon_example.png" width="400">
+
+--------------------------------------------------
 <a name="stock"/>
 
 ## @stock
@@ -87,7 +150,7 @@ __Usage__
 
 __Arguments__
 
-* 'symbol': Stock symbol. (Currently only supporting US stocks)
+* `symbol`: Stock symbol. (Currently only supporting US stocks)
 
 __Example__
 
