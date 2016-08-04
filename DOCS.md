@@ -32,7 +32,7 @@ __Example__
 
 >`@cat gif`
 
-*This will send a animated cat picture.*
+*This will send an animated cat picture.*
 
 --------------------------------------------------
 <a name="color"/>
