@@ -14,11 +14,10 @@ module.exports = function getCatPicture(api, threadID, body) {
     if (body == '@cat gif') {
         type = 'gif';
     }
+    
     var link;
-    var API_KEY = process.env.CAT_API_KEY;
-    if (API_KEY != undefined) {
-        API_KEY = '&api-key=' + API_KEY;
-    }
+    var API_KEY = process.env.CAT_API_KEY == undefined ? '' : '&api-key=' + process.env.CAT_API_KEY;
+
     switch (type) {
         case 'gif':
         link = 'http://thecatapi.com/api/images/get?type=gif' + API_KEY;
