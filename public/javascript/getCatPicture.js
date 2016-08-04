@@ -8,9 +8,8 @@
 var request = require('request');
 var fs = require('fs');
 
-var type = 'png';
-
 module.exports = function getCatPicture(api, threadID, body) {
+    var type = 'png';
     if (body == '@cat gif') {
         type = 'gif';
     }
