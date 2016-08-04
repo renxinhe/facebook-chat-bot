@@ -14,10 +14,12 @@
 ## @cat
 
 This sends a cat picture to the message thread.
+![cat pic](http://2.bp.blogspot.com/-pATX0YgNSFs/VP-82AQKcuI/AAAAAAAALSU/Vet9e7Qsjjw/s1600/Cat-hd-wallpapers.jpg)
 
 __Usage__
 
 `@cat`
+
 `@cat ["gif"]`
 
 __Arguments__
