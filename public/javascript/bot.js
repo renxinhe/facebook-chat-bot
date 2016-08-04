@@ -94,7 +94,7 @@ for (var i = 0; i < handlerFunctionNames.length; i++) {
 function messageHandler(event) {
     var message = event.body;
     if (message != undefined) {
-        if ((/^@cat$/).test(message)) {
+        if ((/^@cat( gif)?$/).test(message)) {
             handlerFunctions['getCatPicture'](userAPI, event.threadID, message);
         } else if ((/^@help.*$/).test(message)) {
             handlerFunctions['getHelp'](userAPI, event.threadID, message);
