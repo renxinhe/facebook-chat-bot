@@ -13,7 +13,7 @@ Dockerfile
 docker-compose.yml
 
 # Temporary files
-temp_pokemon.png
+temp.*
 
 # Secret files
 secret.txt

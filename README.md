@@ -15,6 +15,7 @@ npm start
 
 -----------------------------------------------------------
 ## Usage:
+* [`@cat`](DOCS.md#cat)
 * [`@color`](DOCS.md#color)
 * [`@emoji`](DOCS.md#emoji)
 * [`@help`](DOCS.md#help)
@@ -35,3 +36,4 @@ npm start
 - 0.2.3: Added stock functionality.
 - 0.2.4: Added pokemon functionality.
 - 0.2.5: Added set emoji functionality.
+- 0.2.6: Added cat picture functionality.

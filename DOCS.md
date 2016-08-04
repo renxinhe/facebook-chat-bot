@@ -1,4 +1,5 @@
 # Usage
+* [`cat`](#cat)
 * [`color`](#color)
 * [`emoji`](#emoji)
 * [`help`](#help)
@@ -6,6 +7,32 @@
 * [`pokemon`](#pokemon)
 * [`stock`](#stock)
 * [`weather`](#weather)
+
+--------------------------------------------------
+<a name="cat"/>
+
+## @cat
+
+This sends a cat picture to the message thread.
+
+__Usage__
+
+`@cat`
+`@cat ["gif"]`
+
+__Arguments__
+
+* `gif`: Sends an animated gif instead of a static png.
+
+__Example__
+
+>`@cat`
+
+*This will send a cat picture.*
+
+>`@cat gif`
+
+*This will send a animated cat picture.*
 
 --------------------------------------------------
 <a name="color"/>
