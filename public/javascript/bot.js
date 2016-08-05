@@ -96,7 +96,7 @@ function messageHandler(event) {
     if (message != undefined) {
         if ((/^@cat( gif)?$/).test(message)) {
             handlerFunctions['getCatPicture'](userAPI, event.threadID, message);
-        } else if ((/^@help.*$/).test(message)) {
+        } else if ((/^@help( .+)?$/).test(message)) {
             handlerFunctions['getHelp'](userAPI, event.threadID, message);
         } else if ((/^@pokemon( \d{1,3}){0,5}$/).test(message)) { // TODO: temporary regex
             handlerFunctions['getPokemon'](userAPI, event.threadID, event.senderID, message);

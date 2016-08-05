@@ -16,7 +16,11 @@ module.exports = function getHelp(api, threadID, body) {
     else {
         command=command.substring(1);
     }
-    if (go && command==='color') {
+    if (go && command==='cat') {
+        api.sendMessage("Usage of cat:\nAfter the word cat, add the word 'gif' if you want a cat gif.\nOtherwise, this command will give you a cat image.", threadID);
+        api.sendMessage("Note: Add @ at the beginning of every command", threadID);
+    }
+    else if (go && command==='color') {
         api.sendMessage("Usage of color:\nAfter the word color, type a # and then the hexadecimal value of a color\nThis command changes the chat colors to the color inputted", threadID);
         api.sendMessage("Examples:\ncolor #FFFF00\ncolor #a10dce", threadID);
         api.sendMessage("Note: Add @ at the beginning of every command", threadID);
@@ -35,7 +39,8 @@ module.exports = function getHelp(api, threadID, body) {
         api.sendMessage("Note: Add @ at the beginning of every command", threadID);
     }
     else if (go && command==='emoji') {
-        api.sendMessage("Usage of emoji:\nEnter the actual emoji or a description of the emoji, and the bot will try to set the chat emoji appropriately.");
+        api.sendMessage("Usage of emoji:\nEnter the actual emoji or a description of the emoji, and the bot will try to set the chat emoji appropriately.", threadID);
+        api.sendMessage("Note: Add @ at the beginning of every command", threadID);
     }
     else if (go){
         api.sendMessage("Error: Unidentified command", threadID);
