@@ -4,7 +4,7 @@
 * [`emoji`](#emoji)
 * [`help`](#help)
 * [`meme`](#meme)
-* [`pokemon`](#pokemon)
+* [~~`pokemon`~~](#pokemon)
 * [`stock`](#stock)
 * [`weather`](#weather)
 
