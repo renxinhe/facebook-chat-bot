@@ -2,7 +2,21 @@ var prompt = require('prompt');
 var login = require('facebook-chat-api');
 
 // Reading user login info
-if (process.env.USE_CLI === 'true') {
+if (process.env.USE_CLI === 'false') {
+    email = process.env.BOT_EMAIL;
+    login({email: process.env.BOT_EMAIL, password: process.env.BOT_PASSWORD}, 
+        {selfListen: true, forceLogin: true}, 
+        function(err, api) {
+            if (err) {
+                return console.error(err);
+            }
+            userAPI = api;
+            console.log('"' + email + '" logged in!');
+            // Bot listener
+            stopListening = userAPI.listen(listenerCallback);
+        }
+    );
+} else {
     var EMAIL_PATTERN = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
     var schema = {
         properties: {
@@ -39,20 +53,6 @@ if (process.env.USE_CLI === 'true') {
             }
         );
     });
-} else {
-    email = process.env.BOT_EMAIL;
-    login({email: process.env.BOT_EMAIL, password: process.env.BOT_PASSWORD}, 
-        {selfListen: true, forceLogin: true}, 
-        function(err, api) {
-            if (err) {
-                return console.error(err);
-            }
-            userAPI = api;
-            console.log('"' + email + '" logged in!');
-            // Bot listener
-            stopListening = userAPI.listen(listenerCallback);
-        }
-    );
 }
 
 function listenerCallback(err, event) {
