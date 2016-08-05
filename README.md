@@ -9,7 +9,7 @@ Jimbot runs on node.js platform. It uses [facebook-chat-api](https://github.com/
 npm start
 ```
 
-If you want to use log in through saved environmental variables:
+If you want to login through saved environmental variables:
 ```bash
 export USE_CLI="false"
 export BOT_EMAIL="email@foobar.com"
