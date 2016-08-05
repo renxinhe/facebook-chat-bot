@@ -18,7 +18,8 @@
     "prompt": "^1.0.0",
     "request": "^2.74.0",
     "weather-js": "^1.0.2",
-    "yahoo-finance": "^0.2.12"
+    "yahoo-finance": "^0.2.12",
+    "cheerio": "^0.20.0"
   },
   "repository": {
     "type": "git",
