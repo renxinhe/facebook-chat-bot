@@ -80,7 +80,7 @@ function getMatchInfo(name) {
 
         var $ = cheerio.load(html);
         var team1 = [];
-        $('tbody > tr', 'div.team-1').each(function(i, element) {
+        $('tbody > tr[class$=" "]', 'div.team-1').each(function(i, element) {
             team1[i] = $(this).children('td.name').children('a').children('span').text();
             team1[i] += ' - ' + $(this).children('td.champion').children('span').children('a').text();
             if ($(this).children('td.level').text() != '') {
@@ -89,7 +89,7 @@ function getMatchInfo(name) {
             team1[i] += ' - ' + $(this).children('td.current-season').children('div.ranking').children('span').first().text();
         });
         var team2 = [];
-        $('tbody > tr', 'div.team-2').each(function(i, element) {
+        $('tbody > tr[class$=" "]', 'div.team-2').each(function(i, element) {
             team2[i] = $(this).children('td.name').children('a').children('span').text();
             team2[i] += ' - ' + $(this).children('td.champion').children('span').children('a').text();
             if ($(this).children('td.level').text() != '') {
@@ -98,11 +98,11 @@ function getMatchInfo(name) {
             team2[i] += ' - ' + $(this).children('td.current-season').children('div.ranking').children('span').first().text();
         });
         // console.log($('.team-1').children('table > tbody > tr > .name > a > span'));
-        var matchInfo = 'Current Match:\nTeam 1\n';
+        var matchInfo = 'Current Match:\n==Team 1==\n';
         for (var i = 0; i < team1.length ; i++) {
             matchInfo += team1[i] + "\n";
         }
-        matchInfo += '\nTeam 2\n';
+        matchInfo += '\n==Team 2==\n';
         for (var i = 0; i < team2.length ; i++) {
             matchInfo += team2[i] + "\n";
         }
