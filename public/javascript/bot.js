@@ -75,6 +75,7 @@ var handlerFunctions = {};
 var handlerFunctionNames = [
     'getCatPicture',
     'getHelp',
+    'getLeagueInfo',
     'getPokemon',
     'getStock',
     'getWeather',
@@ -98,6 +99,8 @@ function messageHandler(event) {
             handlerFunctions['getCatPicture'](userAPI, event.threadID, message);
         } else if ((/^@help.*$/).test(message)) {
             handlerFunctions['getHelp'](userAPI, event.threadID, message);
+        } else if ((/^@league( .+)?$/).test(message)) {
+            handlerFunctions['getLeagueInfo'](userAPI, event.threadID, event.senderID, message);
         } else if ((/^@pokemon( \d{1,3}){0,5}$/).test(message)) { // TODO: temporary regex
             handlerFunctions['getPokemon'](userAPI, event.threadID, event.senderID, message);
         } else if ((/^@stock .+$/).test(message)) {
