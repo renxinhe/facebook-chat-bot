@@ -155,7 +155,7 @@ module.exports = function getLeagueInfo(api, threadID, userID, body) {
         setName(userID, name);
         // TODO: add db update failure check
         console.log('Summoner name for user "' + userID + '" updated!');
-        api.sendMessage('Summoner name for user ID "' + userID + '"" updated!', threadID);
+        api.sendMessage('Summoner name for user ID "' + userID + ' updated!', threadID);
         return;
     } else {
         endTyping = api.sendTypingIndicator(threadID, function (err) {
