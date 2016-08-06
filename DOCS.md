@@ -108,19 +108,21 @@ __Examples__
 <a name="league"/>
 ## @league
 
+_Welcome to Summoner's Rift!_
+
 This retrieves League of Legends summoner and current match info.
 
 __Usage__
 
 `@league`
 
-`@league [summonor-name]`
+`@league [summoner-name]`
 
 `@league [-setName summoner-name]`
 
 __Arguments__
 
-* `summonor-name`: League of Legends summoner name
+* `summoner-name`: League of Legends summoner name
 
 
 __Options__
