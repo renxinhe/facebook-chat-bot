@@ -25,6 +25,7 @@ npm start
 * [`@color`](DOCS.md#color)
 * [`@emoji`](DOCS.md#emoji)
 * [`@help`](DOCS.md#help)
+* [`@league`](DOCS.md#league)
 * [`@meme`](DOCS.md#meme)
 * [~~`@pokemon`~~](DOCS.md#pokemon)
 * [`@stock`](DOCS.md#stock)
