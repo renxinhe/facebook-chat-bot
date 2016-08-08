@@ -151,7 +151,6 @@ Bob - Lux - Silver V (15 LP)
 Charlie - Kennen - Unranked (0 LP)
 Dave - Blitzcrank - Unranked (0 LP)
 Eve - Xin Zhao - Unranked (0 LP)
-
 ==Team 2==
 Frank - Kog'Maw - Unranked (0 LP)
 Grace - Gangplank - Silver III (0 LP)
