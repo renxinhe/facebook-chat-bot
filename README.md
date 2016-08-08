@@ -43,3 +43,4 @@ npm start
 - 0.2.4: Added pokemon functionality.
 - 0.2.5: Added set emoji functionality.
 - 0.2.6: Added cat picture functionality.
+- 0.2.7: Added League of Legends match data functionality.

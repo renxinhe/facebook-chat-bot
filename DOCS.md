@@ -3,6 +3,7 @@
 * [`color`](#color)
 * [`emoji`](#emoji)
 * [`help`](#help)
+* [`league`](#league)
 * [`meme`](#meme)
 * [~~`pokemon`~~](#pokemon)
 * [`stock`](#stock)
@@ -101,6 +102,64 @@ __Examples__
 >`@help`
 
 >`@help weather`
+
+--------------------------------------------------
+
+<a name="league"/>
+## @league
+
+_Welcome to Summoner's Rift!_
+
+This retrieves League of Legends summoner and current match info.
+
+__Usage__
+
+`@league`
+
+`@league [summoner-name]`
+
+`@league [-setName summoner-name]`
+
+__Arguments__
+
+* `summoner-name`: League of Legends summoner name
+
+
+__Options__
+
+* `-setName`: Stores `summoner-name` as the default summoner. Bare command `@league` will retrieve stats for the default summoner.
+
+__Examples__
+
+>`@league Alice`
+
+>Alice\
+Bronze 1 28LP\
+9W 11L Win Ratio 45%\
+Sona - 5W 5L Win Ratio 50%\
+Nami - 4W 0L Win Ratio 100%\
+Ashe - 0W 1L Win Ratio 0%\
+Tahm Kench - 0W 1L Win Ratio 0%\
+Vel'Koz - 0W 1L Win Ratio 0%\
+\----------------\
+Current Match:\
+\==Team 1==\
+Alice - Elise - Bronze I (28 LP)\
+Bob - Lux - Silver V (15 LP)\
+Charlie - Kennen - Unranked (0 LP)\
+Dave - Blitzcrank - Unranked (0 LP)\
+Eve - Xin Zhao - Unranked (0 LP)\
+\
+\==Team 2==\
+Frank - Kog'Maw - Unranked (0 LP)\
+Grace - Gangplank - Silver III (0 LP)\
+Mallory - Garen - Unranked (0 LP)\
+Oscar - Sejuani - Silver II (94 LP)\
+Sybil - Mordekaiser - Silver V (57 LP)
+
+>`@league -setName Bob`
+
+>Summoner name for user ID "***************" updated!
 
 --------------------------------------------------
 <a name="meme"/>

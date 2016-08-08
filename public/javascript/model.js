@@ -15,3 +15,10 @@ var locationSchema = new mongoose.Schema({
 });
 
 exports.Location = mongoose.model('Location', locationSchema);
+
+var summonerSchema = new mongoose.Schema({
+    userID: {type: String, unique: true},
+    summonerName: String
+});
+
+exports.Summoner = mongoose.model('Summoner', summonerSchema);
