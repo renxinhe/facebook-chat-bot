@@ -133,33 +133,36 @@ __Examples__
 
 >`@league Alice`
 
->Alice\
-Bronze 1 28LP\
-9W 11L Win Ratio 45%\
-Sona - 5W 5L Win Ratio 50%\
-Nami - 4W 0L Win Ratio 100%\
-Ashe - 0W 1L Win Ratio 0%\
-Tahm Kench - 0W 1L Win Ratio 0%\
-Vel'Koz - 0W 1L Win Ratio 0%\
-\----------------\
-Current Match:\
-\==Team 1==\
-Alice - Elise - Bronze I (28 LP)\
-Bob - Lux - Silver V (15 LP)\
-Charlie - Kennen - Unranked (0 LP)\
-Dave - Blitzcrank - Unranked (0 LP)\
-Eve - Xin Zhao - Unranked (0 LP)\
-\
-\==Team 2==\
-Frank - Kog'Maw - Unranked (0 LP)\
-Grace - Gangplank - Silver III (0 LP)\
-Mallory - Garen - Unranked (0 LP)\
-Oscar - Sejuani - Silver II (94 LP)\
+>
+```
+Alice
+Bronze 1 28LP
+9W 11L Win Ratio 45%
+Sona - 5W 5L Win Ratio 50%
+Nami - 4W 0L Win Ratio 100%
+Ashe - 0W 1L Win Ratio 0%
+Tahm Kench - 0W 1L Win Ratio 0%
+Vel'Koz - 0W 1L Win Ratio 0%
+----------------
+Current Match:
+==Team 1==
+Alice - Elise - Bronze I (28 LP)
+Bob - Lux - Silver V (15 LP)
+Charlie - Kennen - Unranked (0 LP)
+Dave - Blitzcrank - Unranked (0 LP)
+Eve - Xin Zhao - Unranked (0 LP)
+
+==Team 2==
+Frank - Kog'Maw - Unranked (0 LP)
+Grace - Gangplank - Silver III (0 LP)
+Mallory - Garen - Unranked (0 LP)
+Oscar - Sejuani - Silver II (94 LP)
 Sybil - Mordekaiser - Silver V (57 LP)
+```
 
 >`@league -setName Bob`
 
->Summoner name for user ID "***************" updated!
+>`Summoner name for user ID "***************" updated!`
 
 --------------------------------------------------
 <a name="meme"/>
@@ -248,9 +251,12 @@ __Example__
 
 >`@stock GOOGL`
 
->Alphabet Inc. (GOOGL) last traded at $757.52 on Mon Jul 25 2016 00:00:00 GMT-0700 (Pacific Daylight Time).
+>
+```
+Alphabet Inc. (GOOGL) last traded at $757.52 on Mon Jul 25 2016 00:00:00 GMT-0700 (Pacific Daylight Time).
 Volume: 1073278 | P/E Ratio: 30.82
 Change: $-1.76 | % Change: -0.23%
+```
 
 --------------------------------------------------
 <a name="weather"/>
@@ -272,7 +278,9 @@ __Example__
 
 >`@weather 94158`
 
->59°F  
+>
+```
+59°F  
 San Francisco, CA  
 Mostly Sunny :cloud:  
 Feels like 59°. Humidity 90%.  
@@ -280,11 +288,14 @@ Feels like 59°. Humidity 90%.
 07-31 | 56°/69°  :umbrella: 0%  
 08-01 | 56°/71°  :umbrella: 10%  
 08-02 | 54°/69°  :umbrella: 0%  
-08-03 | 54°/69°  :umbrella: 0%  
+08-03 | 54°/69°  :umbrella: 0%
+```
 
 >`@weather New York, NY`
 
->73°F  
+>
+```
+73°F  
 New York, NY  
 Partly Cloudy :cloud:  
 Feels like 73°. Humidity 94%.  
@@ -293,4 +304,4 @@ Feels like 73°. Humidity 94%.
 08-01 | 72°/79°  :umbrella: 80%  
 08-02 | 71°/76°  :umbrella: 80%  
 08-03 | 72°/78°  :umbrella: 60%
-
+```
