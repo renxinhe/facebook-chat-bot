@@ -9,7 +9,7 @@ var request = require('request');
 var MetaInspector = require('node-metainspector');
 var cheerio = require('cheerio');
 
-var userAPI, userThreadID, endTyping, returnString;
+var endTyping;
 
 function setName(userID, name) {
     var Summoner = require('./model.js').Summoner;
@@ -28,17 +28,17 @@ function setName(userID, name) {
     });
 }
 
-function getSummonerInfo(name) {
+function getSummonerInfo(name, api, threadID, returnString) {
     var client = new MetaInspector("http://na.op.gg/summoner/userName=" + name, { timeout: 5000 });
     client.on("fetch", function(){
         var info = client.description;
         if (info == 'LoL Stats! Check your Summoner, MMR, Live Spectate and using powerful global League of Legends Statistics!') {
-            userAPI.sendMessage('Summoner "' + name + '" not found.', userThreadID);
+            api.sendMessage('Summoner "' + name + '" not found.', threadID);
             return;
         } else {
             info = info.replace(/( \/ )|(, )/g, '\n');
             returnString += info + '\n----------------\n';
-            getMatchInfo(name);
+            getMatchInfo(name, api, threadID, returnString);
         }
     });
      
@@ -49,13 +49,13 @@ function getSummonerInfo(name) {
     client.fetch();
 }
 
-function getMatchInfo(name) {
+function getMatchInfo(name, api, threadID, returnString) {
     var options = {
         url: 'http://www.lolnexus.com/ajax/get-game-info/NA.json?name=' + name,
         json: true
     }
     console.log('Requesting lolnexus...');
-    userAPI.sendMessage('Requesting info from LoLNexus. Please wait...', userThreadID);
+    api.sendMessage('Requesting info for ' + name + '. Please wait...', threadID);
     request.get(options, function(err, res, body) {
         if (err) {
             console.error('Failed to get match info.');
@@ -65,12 +65,12 @@ function getMatchInfo(name) {
         if ((/.+is not currently in a game.+/).test(body['html'])) {
             console.log(name + ' is not currently in a game.');
             returnString += name + ' is not currently in a game.\n';
-            printResponse(returnString);
+            printResponse(api, threadID, returnString);
             return;
         } else if (!body['successful']) {
             console.log('Game lookup unsuccessful.');
             returnString += 'Game lookup unsuccessful for ' + name + '.\n';
-            printResponse(returnString);
+            printResponse(api, threadID, returnString);
             return;
         }
         console.log('html loaded.');
@@ -107,7 +107,7 @@ function getMatchInfo(name) {
             matchInfo += team2[i] + "\n";
         }
         returnString += matchInfo;
-        printResponse(returnString);
+        printResponse(api, threadID, returnString);
 
         if (endTyping != undefined) {
             endTyping();
@@ -116,15 +116,12 @@ function getMatchInfo(name) {
     })
 }
 
-function printResponse(res) {
-    userAPI.sendMessage(res, userThreadID);
+function printResponse(api, threadID, returnString) {
+    api.sendMessage(returnString, threadID);
+    console.log('League info sent to thread ' + threadID + '.');
 }
 
 module.exports = function getLeagueInfo(api, threadID, userID, body) {
-    userAPI = api;
-    userThreadID = threadID;
-    returnString = '';
-
     if (body == '@league') {
         var Summoner = require('./model.js').Summoner;
         Summoner.where({userID: String(userID)}).findOne(function(err, summoner) {
@@ -140,7 +137,7 @@ module.exports = function getLeagueInfo(api, threadID, userID, body) {
                     if (err) {
                         return console.error(err);
                     }
-                    getSummonerInfo(name);
+                    getSummonerInfo(name, api, threadID, '');
                 });
             }
         });
@@ -162,7 +159,7 @@ module.exports = function getLeagueInfo(api, threadID, userID, body) {
             if (err) {
                 return console.error(err);
             }
-            getSummonerInfo(body);
+            getSummonerInfo(body, api, threadID, '');
         });
         return;
     }
