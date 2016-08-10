@@ -175,6 +175,10 @@ function exitHandler(options, err) {
     return;
 }
 
+process.on('uncaughtException', function(err) {
+    console.error(err);
+})
+
 //do something when app is closing
 process.on('exit', exitHandler.bind(null,{cleanup:true}));
 
