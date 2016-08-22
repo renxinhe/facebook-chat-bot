@@ -6,8 +6,14 @@ Jimbot runs on node.js platform. It uses [facebook-chat-api](https://github.com/
 -----------------------------------------------------------
 ## Install and run
 ```bash
-export USE_CLI="true" # if you want to use log in from command line.
-# Otherwise, export BOT_EMAIL and BOT_PASSWORD to be your Facebook login information.
+npm start
+```
+
+If you want to login through saved environmental variables:
+```bash
+export USE_CLI="false"
+export BOT_EMAIL="email@foobar.com"
+export BOT_PASSWORD="facebook-password"
 npm start
 ```
 
@@ -19,6 +25,7 @@ npm start
 * [`@color`](DOCS.md#color)
 * [`@emoji`](DOCS.md#emoji)
 * [`@help`](DOCS.md#help)
+* [`@league`](DOCS.md#league)
 * [`@meme`](DOCS.md#meme)
 * [~~`@pokemon`~~](DOCS.md#pokemon)
 * [`@stock`](DOCS.md#stock)
