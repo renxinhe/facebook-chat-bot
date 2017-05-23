@@ -11,7 +11,7 @@ if (process.env.LOGIN_METHOD == 'ENV_VAR') {
                 return console.error(err);
             }
             userAPI = api;
-            console.log('"' + email + '" logged in!');
+            console.log('"' + email + '" logged in via environment variables!');
             // Bot listener
             stopListening = userAPI.listen(listenerCallback);
         }
@@ -25,7 +25,7 @@ if (process.env.LOGIN_METHOD == 'ENV_VAR') {
                 return console.error(err);
             }
             userAPI = api;
-            console.log('"' + email + '" logged in!');
+            console.log('"' + email + '" logged in via app state!');
             // Bot listener
             stopListening = userAPI.listen(listenerCallback);
         }
@@ -61,7 +61,7 @@ if (process.env.LOGIN_METHOD == 'ENV_VAR') {
                     return console.error(err);
                 }
                 userAPI = api;
-                console.log('"' + email + '" logged in!');
+                console.log('"' + email + '" logged in from CLI!');
                 // Bot listener
                 stopListening = userAPI.listen(listenerCallback);
             }
