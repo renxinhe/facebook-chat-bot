@@ -2,12 +2,26 @@ var prompt = require('prompt');
 var login = require('facebook-chat-api');
 
 // Reading user login info
-if (process.env.USE_CLI === 'false') {
+if (process.env.LOGIN_METHOD == 'ENV_VAR') {
     email = process.env.BOT_EMAIL;
     login({email: process.env.BOT_EMAIL, password: process.env.BOT_PASSWORD}, 
         {selfListen: true, forceLogin: true}, 
         function(err, api) {
             if (err) {
+                return console.error(err);
+            }
+            userAPI = api;
+            console.log('"' + email + '" logged in!');
+            // Bot listener
+            stopListening = userAPI.listen(listenerCallback);
+        }
+    );
+} else if (process.env.LOGIN_METHOD == 'APP_STATE') {
+    login({appState: JSON.parse(process.env.APP_STATE)}, 
+        {selfListen: true, forceLogin: true}, 
+        function(err, api) {
+            if (err) {
+                console.log("Invalid app state. Make sure the session isn't expired.");
                 return console.error(err);
             }
             userAPI = api;
