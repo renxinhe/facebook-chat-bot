@@ -34,6 +34,9 @@ prompt.get(schema, function(err, result){
             console.log('"' + result.email + '" logged in from CLI!');
             fs.writeFileSync('appstate.json', JSON.stringify(api.getAppState()));
             console.log('App state has been written to appstate.json.');
+            console.log('\nNext command to run:');
+            console.log('export LOGIN_METHOD="APP_STATE" && export APP_STATE=$(cat appstate.json)');
+            console.log('\nWARNING: Do NOT share the content of appstate.json with anyone. It contains your Facebook session information that others can use to login as you.')
         }
     );
 });
