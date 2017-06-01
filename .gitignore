@@ -17,3 +17,4 @@ temp.*
 
 # Secret files
 secret.txt
+appstate.json

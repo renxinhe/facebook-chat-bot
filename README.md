@@ -11,11 +11,20 @@ npm start
 
 If you want to login through saved environmental variables:
 ```bash
-export USE_CLI="false"
+export LOGIN_METHOD="ENV_VAR"
 export BOT_EMAIL="email@foobar.com"
 export BOT_PASSWORD="facebook-password"
 npm start
 ```
+
+If you want to store your login session a file for up to three months:
+```bash
+node saveAppState.js
+export LOGIN_METHOD="APP_STATE"
+export APP_STATE=$(cat appstate.json)
+```
+WARNING: The generated file appstate.json contains your login session cookie. Do NOT share it with anyone.
+This login method stores this session cookie in the environment variable APP_STATE, which is only visible to you.
 
 [node.js](https://nodejs.org/en/) is a required dependency.
 
