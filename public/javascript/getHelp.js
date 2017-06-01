@@ -9,16 +9,15 @@ module.exports = function getHelp(api, threadID, body) {
     var go = true;
     var command = body.substring('@help'.length);
     if (command.length==0) {
-        api.sendMessage("Note: Add @ at the beginning of every command", threadID);
-        api.sendMessage('Command list:\n\
-cat ["gif"]\n\
-color [#hex]\n\
-emoji <emoji>\n\
-help [command]\n\
-league [summoner_name] [-setName summoner_name]\n\
-stock <ticker>\n\
+        api.sendMessage('Command list:\n\n\
+cat\n\
+color\n\
+emoji\n\
+help\n\
+league\n\
+stock\n\
 meme\n\
-weather <zip code | city name>'
+weather'
         , threadID);
         go=false;
     }
@@ -27,6 +26,7 @@ weather <zip code | city name>'
     }
     if (go && command==='cat') {
         api.sendMessage('Usage of @cat:\n"@cat gif" if you want a cat gif.\nOtherwise, this command will give you a cat image.', threadID);
+        api.sendMessage("Examples:\n@cat\n@cat gif", threadID);
     }
     else if (go && command==='color') {
         api.sendMessage("Usage of @color:\nAfter the word color, type a # and then the hexadecimal value of a color\nThis command changes the chat colors to the color inputted", threadID);
@@ -38,15 +38,19 @@ weather <zip code | city name>'
     }
     else if (go && command==='help') {
         api.sendMessage("Usage of @help:\nReplace the second instance of the word help in your most recent request, with a different command to get more information about that command", threadID);
+        api.sendMessage("Examples:\n@help\n@help cat", threadID);
     }
     else if (go && command==='league') {
         api.sendMessage('Usage of @league:\nLook up a League of Legends summoner\'s stats. Use "-setName" flag to set your default summoner name', threadID);
+        api.sendMessage("Examples:\n@league Alice\n@league -setName Bob\n@league", threadID);
     }
     else if (go && command==='stock') {
         api.sendMessage("Usage of @stock:\nLook up a stock's stats", threadID);
+        api.sendMessage("Examples:\n@stock FB", threadID);
     }
     else if (go && command==='meme') {
         api.sendMessage("Usage of @meme:\nUse @meme to get rickrolled wonderfully", threadID);
+        api.sendMessage("Examples:\n@meme", threadID);
     }
     else if (go && command==='weather') {
         api.sendMessage("Usage of @weather:\nAfter the word weather, type either the zipcode or city, state of the place that you wish to get weather information about.\nYou will recieve current conditions as well as the 5-day forcast.", threadID);
