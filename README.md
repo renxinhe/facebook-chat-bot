@@ -33,6 +33,7 @@ This login method stores this session cookie in the environment variable APP_STA
 -----------------------------------------------------------
 ## Usage:
 * [`@cat`](DOCS.md#cat)
+* [`@channel`](DOCS.md#channel)
 * [`@color`](DOCS.md#color)
 * [`@emoji`](DOCS.md#emoji)
 * [`@help`](DOCS.md#help)
@@ -57,3 +58,4 @@ This login method stores this session cookie in the environment variable APP_STA
 - 0.2.6: Added cat picture functionality.
 - 0.2.7: Added League of Legends match data functionality.
 - 0.3.0: Added login via app state.
+- 0.3.1: Added tag channel.

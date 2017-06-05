@@ -11,6 +11,7 @@ module.exports = function getHelp(api, threadID, body) {
     if (command.length==0) {
         api.sendMessage('Command list:\n\n\
 cat\n\
+channel\n\
 color\n\
 emoji\n\
 help\n\
@@ -33,6 +34,10 @@ weather'
     if (go && command==='cat') {
         api.sendMessage('Usage of @cat:\n"@cat gif" if you want a cat gif.\nOtherwise, this command will give you a cat image.', threadID);
         api.sendMessage("Examples:\n@cat\n@cat gif", threadID);
+    }
+    else if (go && command==='channel') {
+        api.sendMessage("Usage of @channel:\nMention every user in a group chat.", threadID);
+        api.sendMessage("Examples:\n@channel", threadID);
     }
     else if (go && command==='color') {
         api.sendMessage("Usage of @color:\nAfter the word color, type a # and then the hexadecimal value of a color\nThis command changes the chat colors to the color inputted", threadID);
