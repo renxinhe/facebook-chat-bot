@@ -39,6 +39,27 @@ __Example__
 *This will send an animated cat picture.*
 
 --------------------------------------------------
+<a name="channel"/>
+
+## @channel
+
+This mentions everyone in a group chat in a text message.
+
+__Usage__
+
+`@channel`
+
+__Arguments__
+
+* None
+
+__Example__
+
+>`@channel`
+
+*This will mention everyone in a text message.*
+
+--------------------------------------------------
 <a name="color"/>
 
 ## @color
