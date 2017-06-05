@@ -5,7 +5,7 @@ var login = require('facebook-chat-api');
 if (process.env.LOGIN_METHOD == 'ENV_VAR') {
     email = process.env.BOT_EMAIL;
     login({email: process.env.BOT_EMAIL, password: process.env.BOT_PASSWORD}, 
-        {selfListen: true, forceLogin: true}, 
+        {selfListen: false, forceLogin: true}, 
         function(err, api) {
             if (err) {
                 return console.error(err);
@@ -18,7 +18,7 @@ if (process.env.LOGIN_METHOD == 'ENV_VAR') {
     );
 } else if (process.env.LOGIN_METHOD == 'APP_STATE') {
     login({appState: JSON.parse(process.env.APP_STATE)}, 
-        {selfListen: true, forceLogin: true}, 
+        {selfListen: false, forceLogin: true}, 
         function(err, api) {
             if (err) {
                 console.log("Invalid app state. Make sure the session isn't expired.");
@@ -40,7 +40,7 @@ if (process.env.LOGIN_METHOD == 'ENV_VAR') {
                 required: true
               },
              password: {
-                 hidden: true,
+                hidden: true,
                 replace: '*',
                 required: true
               }
@@ -55,7 +55,7 @@ if (process.env.LOGIN_METHOD == 'ENV_VAR') {
         }
         email = result.email;
         login({email: result.email, password: result.password}, 
-            {selfListen: true, forceLogin: true}, 
+            {selfListen: false, forceLogin: true}, 
             function(err, api) {
                 if (err) {
                     return console.error(err);

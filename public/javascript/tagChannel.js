@@ -20,7 +20,7 @@ module.exports = function tagChannel(api, threadID) {
 	    		if (err) {
 	        		console.log(err);
 	   			} else {
-	   				var mentionsStr = '';
+	   				var mentionsStr = 'Tagging everyone:\n';
 	   				var mentionsObjs = [];
 	   				var doneStrBuilding = _.after(numUser, function() {
 	   					var msg = {
