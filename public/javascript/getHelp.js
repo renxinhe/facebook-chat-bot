@@ -19,6 +19,12 @@ stock\n\
 meme\n\
 weather'
         , threadID);
+        api.sendMessage("Examples:\n@cat\n@help color", threadID);
+        var msg = {
+            body: "Checkout Jimbot on Github: https://github.com/renxinhe/facebook-chat-bot",
+            url: "https://github.com/renxinhe/facebook-chat-bot"
+        };
+        api.sendMessage(msg, threadID);
         go=false;
     }
     else {
