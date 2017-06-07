@@ -39,7 +39,7 @@ npm start
 *WARNING: The generated file `appstate.json` contains your login session cookie. Do NOT share it with anyone.
 This login method stores this session cookie in the environment variable APP_STATE, which is only visible to you.*
 
-#### Dependencies
+## Dependencies
 [node.js](https://nodejs.org/en/) is a required Dependenciescy.
 
 -----------------------------------------------------------
