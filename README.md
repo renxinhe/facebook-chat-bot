@@ -7,6 +7,9 @@ Jimbot runs on node.js platform. It uses [facebook-chat-api](https://github.com/
 
 -----------------------------------------------------------
 ## Install and run
+
+Clone the repository, and use one of the following login methods.
+
 ### One time login
 ```bash
 npm start
@@ -21,7 +24,7 @@ export BOT_PASSWORD="facebook-password"
 npm start
 ```
 
-### *(Recommended)*: Login via saved app state (session cookies)
+### Login via saved app state (session cookies)
 
 This method is recommended since the bot will not be hitting Facebook's login endpoint as frequently. Instead, it will use saved session cookies much like those in your browser cache. If you are running a bot on dynamic IP servers (e.g. Heroku), you should use this login method to prevent your account from being locked by Facebook.
 
@@ -33,11 +36,11 @@ export LOGIN_METHOD="APP_STATE"
 export APP_STATE=$(cat appstate.json)
 npm start
 ```
-**WARNING: The generated file `appstate.json` contains your login session cookie. Do NOT share it with anyone.
-This login method stores this session cookie in the environment variable APP_STATE, which is only visible to you.**
+*WARNING: The generated file `appstate.json` contains your login session cookie. Do NOT share it with anyone.
+This login method stores this session cookie in the environment variable APP_STATE, which is only visible to you.*
 
-### Dependencies
-[node.js](https://nodejs.org/en/) is a required dependency.
+#### Dependencies
+[node.js](https://nodejs.org/en/) is a required Dependenciescy.
 
 -----------------------------------------------------------
 ## Usage:
