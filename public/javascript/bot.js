@@ -4,8 +4,8 @@ var login = require('facebook-chat-api');
 // Reading user login info
 if (process.env.LOGIN_METHOD == 'ENV_VAR') {
     email = process.env.BOT_EMAIL;
-    login({email: process.env.BOT_EMAIL, password: process.env.BOT_PASSWORD}, 
-        {selfListen: false, forceLogin: true}, 
+    login({email: process.env.BOT_EMAIL, password: process.env.BOT_PASSWORD},
+        {selfListen: false, forceLogin: true},
         function(err, api) {
             if (err) {
                 return console.error(err);
@@ -17,8 +17,8 @@ if (process.env.LOGIN_METHOD == 'ENV_VAR') {
         }
     );
 } else if (process.env.LOGIN_METHOD == 'APP_STATE') {
-    login({appState: JSON.parse(process.env.APP_STATE)}, 
-        {selfListen: false, forceLogin: true}, 
+    login({appState: JSON.parse(process.env.APP_STATE)},
+        {selfListen: false, forceLogin: true},
         function(err, api) {
             if (err) {
                 console.log("Invalid app state. Make sure the session isn't expired.");
@@ -54,8 +54,8 @@ if (process.env.LOGIN_METHOD == 'ENV_VAR') {
             return console.error(err);
         }
         email = result.email;
-        login({email: result.email, password: result.password}, 
-            {selfListen: false, forceLogin: true}, 
+        login({email: result.email, password: result.password},
+            {selfListen: false, forceLogin: true},
             function(err, api) {
                 if (err) {
                     return console.error(err);
@@ -120,8 +120,8 @@ function messageHandler(event) {
             handlerFunctions['getPokemon'](userAPI, event.threadID, event.senderID, message);
         } else if ((/^@stock .+$/).test(message)) {
             handlerFunctions['getStock'](userAPI, event.threadID, message);
-        } else if ((/^@weather ([0-9]{5}|([a-zA-Z ]+(, )?[a-zA-Z ]+))$/).test(message)) {
-            handlerFunctions['getWeather'](userAPI, event.threadID, message);
+        } else if ((/^@weather( ([0-9]{5}|([a-zA-Z ]+(, )?[a-zA-Z ]+)))?$/).test(message)) {
+            handlerFunctions['getWeather'](userAPI, event.threadID, event.senderID, message);
         } else if ((/^@meme$/).test(message)) {
             handlerFunctions['rickroll'](userAPI, event.threadID);
         } else if ((/^@emoji .+$/).test(message)) {
