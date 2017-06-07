@@ -287,6 +287,8 @@ This posts weather information of a given location.
 
 __Usage__
 
+`@weather`
+
 `@weather <zipcode | location name>`
 
 __Arguments__
@@ -295,6 +297,10 @@ __Arguments__
 * `location name`: A letter and space only location name, or city name and state separated by a comma and a space.
 
 __Example__
+
+> @weather
+
+*This will give you the weather for the last shared location.*
 
 >`@weather 94158`
 
