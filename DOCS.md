@@ -298,7 +298,7 @@ __Arguments__
 
 __Example__
 
-> @weather
+> `@weather`
 
 *This will give you the weather for the last shared location.*
 
