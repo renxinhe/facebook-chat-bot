@@ -64,8 +64,8 @@ weather'
         api.sendMessage("Examples:\n@meme", threadID);
     }
     else if (go && command==='weather') {
-        api.sendMessage("Usage of @weather:\nAfter the word weather, type either the zipcode or city, state of the place that you wish to get weather information about.\nYou will recieve current conditions as well as the 5-day forcast.", threadID);
-        api.sendMessage("Examples:\n@weather New York, NY\n@weather Paris, France\n@weather 75703", threadID);
+        api.sendMessage("Usage of @weather:\nAfter the word weather, type either the zipcode or city, state of the place that you wish to get weather information about.\nYou will recieve current conditions as well as the 5-day forcast.\nIf no zipcode or city is provided, it will use the last shared location.", threadID);
+        api.sendMessage("Examples:\n@weather\n@weather New York, NY\n@weather Paris, France\n@weather 75703", threadID);
     }
     else if (go){
         api.sendMessage('Error: Unidentified command "' + command + '"', threadID);
