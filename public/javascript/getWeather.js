@@ -7,10 +7,9 @@
  
 var weather = require("weather-js");
 
-module.exports = function getWeather(api, threadID, body) {
-    const locale = body.substring('@weather '.length);
-    console.log('Fetching weather for ' + locale + '...');
-    weather.find({ search: locale, degreeType: 'F' }, function(err, result) {
+function printWeather(api, threadID, searchTerm) {
+    console.log('Fetching weather for ' + searchTerm + '...');
+    weather.find({ search: searchTerm, degreeType: 'F' }, function(err, result) {
         if (err) {
             api.sendMessage(err, threadID);
             console.error(err);
@@ -91,4 +90,25 @@ module.exports = function getWeather(api, threadID, body) {
             console.log('No data');
         }
     });
+}
+
+module.exports = function getWeather(api, threadID, userID, body) {
+    if (body === '@weather') {
+        let Location = require('./model.js').Location;
+        Location.where({userID: String(userID)}).findOne(function(err, location) {
+            if (err) {
+                return console.error(err);
+            }
+            if (location == null) {
+                api.sendMessage('User location data not found. Please send a location via Messenger location sharing or specify a location with @weather LOCATION', threadID);
+                return console.log('User "' + userID + '" location info not found in database;');
+            }
+            console.log(location);
+            let latitude = location.latitude;
+            let longitude = location.longitude;
+            printWeather(api, threadID, latitude+','+longitude);
+        });
+    } else {
+        printWeather(api, threadID, body.substring('@weather '.length));
+    }
 }
