@@ -40,7 +40,7 @@ npm start
 This login method stores this session cookie in the environment variable APP_STATE, which is only visible to you.*
 
 ## Dependencies
-[node.js](https://nodejs.org/en/) is a required Dependenciescy.
+[node.js](https://nodejs.org/en/) is a required dependency.
 
 -----------------------------------------------------------
 ## Usage:
